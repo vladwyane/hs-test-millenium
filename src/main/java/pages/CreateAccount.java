@@ -1,6 +1,7 @@
 package pages;
 
 import data.Users;
+import data.UsersData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,21 +49,21 @@ public class CreateAccount extends BasePage {
     @FindBy(xpath = "//input[@value='Create an Account']")
     private WebElement createAccBut;
 
-    public MyAccount registration (Users users) {
+    public MyAccount registration (UsersData usersData) {
         openRegistrationPage();
-        fillRegistrationFields(users);
+        fillRegistrationFields(usersData);
         createAccBut.click();
         return new MyAccount(driver);
     }
 
-    public void fillRegistrationFields (Users users) {
-        type(firstNameField, users.getFirstName());
-        type(lastNameField, users.getLastName());
-        type(passwordField, users.getPassword());
-        type(confPasswordField, users.getConfPassword());
-        type(emailField, users.getEmail());
-        type(phoneField, users.getPhone());
-        fillLocationField(users.getLocation());
+    public void fillRegistrationFields (UsersData usersData) {
+        type(firstNameField, usersData.getFirstName());
+        type(lastNameField, usersData.getLastName());
+        type(passwordField, usersData.getPassword());
+        type(confPasswordField, usersData.getConfPassword());
+        type(emailField, usersData.getEmail());
+        type(phoneField, usersData.getPhone());
+        fillLocationField(usersData.getLocation());
     }
 
     public CreateAccount openRegistrationPage() {
