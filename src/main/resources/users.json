@@ -1,0 +1,29 @@
+[
+  {
+    "firstName": "Lebron 1",
+    "lastName": "James 1",
+    "email": "vladyslav.chesalov+8@bigdropinc.com",
+    "password": "JR6GMs4ywG",
+    "confPassword": "JR6GMs4ywG",
+    "phone": "0123456789",
+    "location": "Cherry"
+  },
+  {
+    "firstName": "Lebron 2",
+    "lastName": "James 2",
+    "email": "vladyslav.chesalov+9@bigdropinc.com",
+    "password": "JR6GMs4ywG",
+    "confPassword": "JR6GMs4ywG",
+    "phone": "1123456789",
+    "location": "Cherry"
+  },
+  {
+    "firstName": "Lebron 3",
+    "lastName": "James 3",
+    "email": "vladyslav.chesalov+10@bigdropinc.com",
+    "password": "JR6GMs4ywG",
+    "confPassword": "JR6GMs4ywG",
+    "phone": "2123456789",
+    "location": "Cherry"
+  }
+]
