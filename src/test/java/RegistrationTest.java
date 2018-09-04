@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.CreateAccount;
 import pages.Home;
+import pages.SignIn;
 import pages.popUps.InfoPopup;
 import testBase.TestBase;
 
@@ -24,6 +25,7 @@ public class RegistrationTest extends TestBase{
     private Home home = PageFactory.initElements(initDriver(), Home.class);
     private CreateAccount createAccount = PageFactory.initElements(initDriver(), CreateAccount.class);
     private InfoPopup infoPopup = PageFactory.initElements(initDriver(), InfoPopup.class);
+    private SignIn signIn = PageFactory.initElements(initDriver(), SignIn.class);
 
 
     @DataProvider
@@ -54,10 +56,18 @@ public class RegistrationTest extends TestBase{
         return usersData.stream().map((u) -> new Object[] {u}).collect(Collectors.toList()).iterator();
     }
 
-    @Test(dataProvider = "validUsersFromJson")
-    public void testSuccessRegistration(UsersData usersData) throws InterruptedException {
+    @Test(alwaysRun = true)
+    public void testSuccessRegistrationFromSignUpPage() throws InterruptedException {
         home.open();
-        createAccount.registration(usersData);
+        createAccount.openRegistrationPage();
+        createAccount.registration(Users.LEBRON);
+        infoPopup.checkingSuccessOfRegistration();
+    }
+
+    @Test(alwaysRun = true)
+    public void testSuccessRegistrationFromSignInPage() throws InterruptedException {
+        signIn.openCreateAccPageFromSignIn();
+        createAccount.registration(Users.DWYANE);
         infoPopup.checkingSuccessOfRegistration();
     }
 }

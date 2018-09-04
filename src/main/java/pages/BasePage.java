@@ -29,6 +29,9 @@ public abstract class BasePage {
     @FindBy(xpath = "//a[@href='/sign-up']")
     protected WebElement signUpLink;
 
+    @FindBy(xpath = "//a[@href='/account']")
+    protected WebElement signInLink;
+
     @FindBy(xpath = "//div[@aria-label='Locations']//a[contains(text(), 'Find locations')]")
     protected WebElement findLocationLink;
 

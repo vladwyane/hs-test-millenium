@@ -44,7 +44,7 @@ public class UserDataGenerator {
     private static List<UsersData> generateUsers(int count) {
         List<UsersData> usersData = new ArrayList<UsersData>();
         for (int i = 0; i < count; i++) {
-            usersData.add(new UsersData().setFirstName(String.format("Lebron %s", i + 1)).setLastName(String.format("James %s", i + 1))
+            usersData.add(new UsersData().setFirstName(String.format("Lebron " + i)).setLastName(String.format("James %s", i + 1))
                     .setEmail(String.format("vladyslav.chesalov+" + (i + 8) + "@bigdropinc.com")).setPassword(String.format("JR6GMs4ywG"))
                     .setConfPassword(String.format("JR6GMs4ywG")).setPhone(String.format(i + "123456789")).setLocation(String.format("Cherry")));
         }

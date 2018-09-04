@@ -49,21 +49,37 @@ public class CreateAccount extends BasePage {
     @FindBy(xpath = "//input[@value='Create an Account']")
     private WebElement createAccBut;
 
-    public MyAccount registration (UsersData usersData) {
+    public MyAccount registrationFromJson (UsersData users) {
         openRegistrationPage();
-        fillRegistrationFields(usersData);
+        fillRegistrationFieldsFromJson(users);
         createAccBut.click();
         return new MyAccount(driver);
     }
 
-    public void fillRegistrationFields (UsersData usersData) {
-        type(firstNameField, usersData.getFirstName());
-        type(lastNameField, usersData.getLastName());
-        type(passwordField, usersData.getPassword());
-        type(confPasswordField, usersData.getConfPassword());
-        type(emailField, usersData.getEmail());
-        type(phoneField, usersData.getPhone());
-        fillLocationField(usersData.getLocation());
+    public MyAccount registration (Users users) {
+        fillRegistrationFields(users);
+        createAccBut.click();
+        return new MyAccount(driver);
+    }
+
+    public void fillRegistrationFieldsFromJson (UsersData users) {
+        type(firstNameField, users.getFirstName());
+        type(lastNameField, users.getLastName());
+        type(passwordField, users.getPassword());
+        type(confPasswordField, users.getConfPassword());
+        type(emailField, users.getEmail());
+        type(phoneField, users.getPhone());
+        fillLocationField(users.getLocation());
+    }
+
+    public void fillRegistrationFields(Users users) {
+        type(firstNameField, users.getFirstName());
+        type(lastNameField, users.getLastName());
+        type(passwordField, users.getPassword());
+        type(confPasswordField, users.getConfPassword());
+        type(emailField, users.getEmail());
+        type(phoneField, users.getPhone());
+        fillLocationField(users.getLocation());
     }
 
     public CreateAccount openRegistrationPage() {

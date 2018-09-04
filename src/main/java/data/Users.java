@@ -5,7 +5,8 @@ package data;
  */
 public enum Users {
 
-    LEBRON("Lebron", "James", "vladyslav.chesalov+8@bigdropinc.com", "JR6GMs4ywG", "JR6GMs4ywG", "0123456789", "Cherry");
+    LEBRON("Lebron", "James", "vladyslav.chesalov+8@bigdropinc.com", "JR6GMs4ywG", "JR6GMs4ywG", "0123456789", "Cherry"),
+    DWYANE("Dwyane", "Wade", "vladyslav.chesalov+9@bigdropinc.com", "JR6GMs4ywG", "JR6GMs4ywG", "9087654321", "Bear");
 
     private String firstName;
     private String lastName;
