@@ -1,4 +1,5 @@
 import data.Users;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 import pages.SignIn;
@@ -8,10 +9,12 @@ import testBase.TestBase;
 /**
  * Created by bigdrop on 9/4/2018.
  */
+
 public class SignInTest extends TestBase {
 
     private SignIn signIn = PageFactory.initElements(initDriver(), SignIn.class);
     private SignInPopup signInPopup = PageFactory.initElements(initDriver(), SignInPopup.class);
+
 
     @Test(alwaysRun = true)
     public void testSuccessLogInFromSignInPopup() throws InterruptedException {

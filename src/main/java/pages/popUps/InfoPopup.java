@@ -33,5 +33,6 @@ public class InfoPopup extends BasePage {
             softAssert.assertEquals(driver.getCurrentUrl(), ConfigProperties.getProperty("signIn.url"));
         }
         softAssert.assertAll();
+        driver.navigate().refresh();
     }
 }

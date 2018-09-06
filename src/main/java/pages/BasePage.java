@@ -72,7 +72,6 @@ public abstract class BasePage {
         for (int i = 0; i < titlesLocationList.size(); i++) {
             if(isElementInvisible(titlesLocationList.get(i)) == true)
                 rightArrowOfCarousel.click();
-            String tit = titlesLocationList.get(i).getText();
             if(titlesLocationList.get(i).getText().contains(nameLocation.toUpperCase())) {
                 selectButLocationList.get(i).click();
                 return;

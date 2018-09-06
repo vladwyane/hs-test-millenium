@@ -2,7 +2,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import data.Users;
 import data.UsersData;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.CreateAccount;
@@ -20,13 +22,12 @@ import java.util.stream.Collectors;
 /**
  * Created by bigdrop on 8/31/2018.
  */
-public class RegistrationTest extends TestBase{
+public class SuccessRegistrationTest extends TestBase{
 
     private Home home = PageFactory.initElements(initDriver(), Home.class);
     private CreateAccount createAccount = PageFactory.initElements(initDriver(), CreateAccount.class);
     private InfoPopup infoPopup = PageFactory.initElements(initDriver(), InfoPopup.class);
     private SignIn signIn = PageFactory.initElements(initDriver(), SignIn.class);
-
 
     @DataProvider
     public Iterator<Object[]> validUsers() throws IOException {
@@ -56,7 +57,7 @@ public class RegistrationTest extends TestBase{
         return usersData.stream().map((u) -> new Object[] {u}).collect(Collectors.toList()).iterator();
     }
 
-    @Test(alwaysRun = true)
+    @Test(priority = 1, alwaysRun = true)
     public void testSuccessRegistrationFromSignUpPage() throws InterruptedException {
         home.open();
         createAccount.openRegistrationPage();
@@ -64,10 +65,12 @@ public class RegistrationTest extends TestBase{
         infoPopup.checkingSuccessOfRegistration();
     }
 
-    @Test(alwaysRun = true)
+    @Test(priority = 1, alwaysRun = true)
     public void testSuccessRegistrationFromSignInPage() throws InterruptedException {
         signIn.openCreateAccPageFromSignIn();
         createAccount.registration(Users.DWYANE);
         infoPopup.checkingSuccessOfRegistration();
     }
+
+
 }
