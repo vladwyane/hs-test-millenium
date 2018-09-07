@@ -11,13 +11,12 @@ import org.testng.annotations.*;
 @Listeners(MyTestListener.class)
 public class TestBase {
     protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
-    private WebDriver driver;
 
     @BeforeClass
     public WebDriver initDriver() {
-        if (driver == null) {
+        if (app.getDriver() == null) {
             app.setup();
-            driver = app.unit();
+            app.unit();
         }
         return app.getDriver();
     }
@@ -26,6 +25,7 @@ public class TestBase {
     public void screenShot(ITestContext context) {
         context.setAttribute("app", app);
     }
+
 
     @AfterClass
     public void tearDown() {
