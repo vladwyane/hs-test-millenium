@@ -1,9 +1,8 @@
 import data.Users;
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.SignIn;
-import pages.popUps.SignInPopup;
+import pages.Home;
+import pages.SignInPage;
 import testBase.TestBase;
 
 /**
@@ -12,19 +11,25 @@ import testBase.TestBase;
 
 public class SignInTest extends TestBase {
 
-    private SignIn signIn = PageFactory.initElements(initDriver(), SignIn.class);
-    private SignInPopup signInPopup = PageFactory.initElements(initDriver(), SignInPopup.class);
+    private Home home;
+    private SignInPage signInPage;
 
-
-    @Test(alwaysRun = true)
-    public void testSuccessLogInFromSignInPopup() throws InterruptedException {
-        signInPopup.open();
-        signInPopup.logIn(Users.LEBRON);
+    @BeforeMethod
+    public void initPageObjects() {
+        signInPage = new SignInPage(app.getDriver());
+        home = new Home(app.getDriver());
     }
 
-    @Test(alwaysRun = true)
+    @Test()
+    public void testSuccessLogInFromSignInPopup() {
+        home.open();
+        signInPage.openSignInPopup();
+        signInPage.logInFromSignInPopup(Users.LEBRON);
+    }
+
+    @Test()
     public void testSuccessLogInFromSignInPage() throws InterruptedException {
-        signIn.open();
-        signIn.logIn(Users.DWYANE);
+        signInPage.open();
+        signInPage.logIn(Users.DWYANE);
     }
 }

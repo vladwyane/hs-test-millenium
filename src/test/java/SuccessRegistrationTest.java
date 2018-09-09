@@ -2,15 +2,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import data.Users;
 import data.UsersData;
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-import pages.CreateAccount;
+import org.testng.annotations.*;
+import pages.CreateAccountPage;
 import pages.Home;
-import pages.SignIn;
-import pages.popUps.InfoPopup;
+import pages.SignInPage;
 import testBase.TestBase;
 
 import java.io.*;
@@ -24,10 +19,16 @@ import java.util.stream.Collectors;
  */
 public class SuccessRegistrationTest extends TestBase{
 
-    private Home home = PageFactory.initElements(initDriver(), Home.class);
-    private CreateAccount createAccount = PageFactory.initElements(initDriver(), CreateAccount.class);
-    private InfoPopup infoPopup = PageFactory.initElements(initDriver(), InfoPopup.class);
-    private SignIn signIn = PageFactory.initElements(initDriver(), SignIn.class);
+    private Home home;
+    private SignInPage signInPage;
+    private CreateAccountPage createAccountPage;
+
+    @BeforeMethod
+    public void initPageObjects() {
+        home = new Home(app.getDriver());
+        signInPage = new SignInPage(app.getDriver());
+        createAccountPage = new CreateAccountPage(app.getDriver());
+    }
 
     @DataProvider
     public Iterator<Object[]> validUsers() throws IOException {
@@ -57,19 +58,41 @@ public class SuccessRegistrationTest extends TestBase{
         return usersData.stream().map((u) -> new Object[] {u}).collect(Collectors.toList()).iterator();
     }
 
-    @Test(priority = 1, alwaysRun = true)
+    @Test(priority = 1)
     public void testSuccessRegistrationFromSignUpPage() throws InterruptedException {
         home.open();
-        createAccount.openRegistrationPage();
-        createAccount.registration(Users.LEBRON);
-        infoPopup.checkingSuccessOfRegistration();
+        createAccountPage.openRegistrationPage();
+        createAccountPage.registration(Users.LEBRON);
+        createAccountPage.checkingSuccessOfRegistration();
     }
 
-    @Test(priority = 1, alwaysRun = true)
+
+    @Test(priority = 1)
     public void testSuccessRegistrationFromSignInPage() throws InterruptedException {
-        signIn.openCreateAccPageFromSignIn();
-        createAccount.registration(Users.DWYANE);
-        infoPopup.checkingSuccessOfRegistration();
+        signInPage.openCreateAccPageFromSignIn();
+        createAccountPage.registration(Users.DWYANE);
+        createAccountPage.checkingSuccessOfRegistration();
+    }
+
+    @Test(priority = 2)
+    public void testErrorRegistrationAllFieldsBlank() {
+        createAccountPage.open();
+        createAccountPage.clickCreateAccButWithEmptyFields();
+        createAccountPage.checkingErrorNotesAllFieldsAreBlank();
+    }
+
+    @Test(priority = 2)
+    public void testErrorRegistrationNotMatchPassword() {
+        createAccountPage.open();
+        createAccountPage.registration(Users.INVALID);
+        createAccountPage.checkingErrorNoteNotMatchPassword();
+    }
+
+    @Test(priority = 2)
+    public void testErrorRegistrationExistEmail() {
+        createAccountPage.open();
+        createAccountPage.registration(Users.LEBRON);
+        createAccountPage.checkingErrorNoteExistEmail(Users.LEBRON);
     }
 
 
