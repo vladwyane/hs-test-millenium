@@ -53,13 +53,24 @@ public abstract class BasePage {
         }
     }
 
+    protected boolean waitUntilTextInElementAppear(WebElement element, String text) {
+        WebDriverWait wait = new WebDriverWait(driver, 2);
+        try {
+            wait.until(ExpectedConditions.textToBePresentInElement(element, text));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
-
-
-
-
-
-
-
+    protected boolean waitUntilElementAppeared(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        try {
+            wait.until(ExpectedConditions.visibilityOf(element));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 }

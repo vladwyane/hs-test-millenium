@@ -6,9 +6,8 @@ import blocks.popUps.LocationPopup;
 import data.Users;
 import data.UsersData;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.account.MyAccount;
+import pages.account.Dashboard;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import utils.ConfigProperties;
 
@@ -46,7 +45,7 @@ public class CreateAccountPage extends BasePage {
     public void fillRegistrationFields(Users users) {
         type(createAccountForm.getFirstNameField(), users.getFirstName());
         type(createAccountForm.getLastNameField(), users.getLastName());
-        type(createAccountForm.getPasswordField(), users.getPassword());
+        type(createAccountForm.getPasswordField(), users.getNewPassword());
         type(createAccountForm.getConfPasswordField(), users.getConfPassword());
         type(createAccountForm.getEmailField(), users.getEmail());
         type(createAccountForm.getPhoneField(), users.getPhone());
@@ -71,20 +70,20 @@ public class CreateAccountPage extends BasePage {
         locationPopup.getSelectButLocationList().get(locationPopup.getSelectButLocationList().size() - 1).click();
     }
 
-    public MyAccount registrationFromJson (UsersData users) {
+    public Dashboard registrationFromJson (UsersData users) {
         openRegistrationPage();
         fillRegistrationFieldsFromJson(users);
         createAccountForm.clickCreateAccBut();
-        return new MyAccount(driver);
+        return new Dashboard(driver);
     }
 
-    public MyAccount registration (Users users) {
+    public Dashboard registration (Users users) {
         fillRegistrationFields(users);
         createAccountForm.clickCreateAccBut();
-        return new MyAccount(driver);
+        return new Dashboard(driver);
     }
 
-    public void clickCreateAccButWithEmptyFields() {
+    public CreateAccountPage clickCreateAccButWithEmptyFields() {
         createAccountForm.getFirstNameField().clear();
         createAccountForm.getLastNameField().clear();
         createAccountForm.getPasswordField().clear();
@@ -92,6 +91,7 @@ public class CreateAccountPage extends BasePage {
         createAccountForm.getEmailField().clear();
         createAccountForm.getPhoneField().clear();
         createAccountForm.clickCreateAccBut();
+        return this;
     }
 
     public CreateAccountPage openRegistrationPage() {
@@ -102,6 +102,7 @@ public class CreateAccountPage extends BasePage {
     public CreateAccountPage checkingErrorNotesAllFieldsAreBlank() {
         String errorNoteFieldsBlank = "This field can't be blank";
         String errorColor = "rgba(235, 0, 0, 1)";
+        waitUntilTextInElementAppear(createAccountForm.getPhoneFieldNote(), errorColor);
         softAssert.assertEquals(createAccountForm.getFirstNameFieldNote().getText(), errorNoteFieldsBlank);
         softAssert.assertEquals(createAccountForm.getFirstNameFieldNote().getCssValue("color"), errorColor);
 

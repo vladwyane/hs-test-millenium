@@ -1,14 +1,7 @@
 package blocks;
 
-import blocks.popUps.LocationPopup;
-import data.Users;
-import data.UsersData;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.asserts.SoftAssert;
-import pages.CreateAccountPage;
-import pages.account.MyAccount;
 import ru.yandex.qatools.htmlelements.annotations.Block;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.*;

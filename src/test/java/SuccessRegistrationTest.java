@@ -75,7 +75,7 @@ public class SuccessRegistrationTest extends TestBase{
     }
 
     @Test(priority = 2)
-    public void testErrorRegistrationAllFieldsBlank() {
+    public void testErrorRegistrationAllFieldsBlank() throws InterruptedException {
         createAccountPage.open();
         createAccountPage.clickCreateAccButWithEmptyFields();
         createAccountPage.checkingErrorNotesAllFieldsAreBlank();

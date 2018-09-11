@@ -1,17 +1,11 @@
 package blocks.popUps;
 
-import blocks.BaseBlock;
-import data.Users;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.BasePage;
 import ru.yandex.qatools.htmlelements.annotations.Block;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.Link;
 import ru.yandex.qatools.htmlelements.element.TextInput;
-import utils.ConfigProperties;
 
 /**
  * Created by bigdrop on 9/4/2018.

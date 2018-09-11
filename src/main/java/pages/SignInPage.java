@@ -7,6 +7,7 @@ import data.Users;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.account.Dashboard;
 import utils.ConfigProperties;
 
 /**
@@ -35,13 +36,13 @@ public class SignInPage extends BasePage {
 
     public void logIn(Users users) {
         type(signInForm.getEmailField(), users.getEmail());
-        type(signInForm.getPasswordField(), users.getPassword());
+        type(signInForm.getPasswordField(), users.getNewPassword());
         signInForm.clickLoginButton();
     }
 
     public void logInFromSignInPopup(Users users) {
         type(signInPopup.getEmailField(), users.getEmail());
-        type(signInPopup.getPasswordField(), users.getPassword());
+        type(signInPopup.getPasswordField(), users.getNewPassword());
         signInPopup.clickSignInButton();
     }
 

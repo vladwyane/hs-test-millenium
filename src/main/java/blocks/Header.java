@@ -17,6 +17,10 @@ public class Header extends HtmlElement {
         signUpLink.click();
     }
 
+    public Link getSignInLink() {
+        return signInLink;
+    }
+
     @FindBy(xpath = "//a[@href='/account']")
     private Link signInLink;
 
