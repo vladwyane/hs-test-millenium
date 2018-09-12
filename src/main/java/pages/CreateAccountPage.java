@@ -54,11 +54,11 @@ public class CreateAccountPage extends BasePage {
 
     public void fillLocationField(String nameLocation) {
         createAccountForm.getLocationField().click();
-        locationPopup.clickFindLocationLink();
         chooseLocation(nameLocation);
     }
 
     public void chooseLocation(String nameLocation) {
+        locationPopup.clickFindLocationLink();
         for (int i = 0; i < locationPopup.getTitlesLocationList().size(); i++) {
             if(isElementInvisible(locationPopup.getTitlesLocationList().get(i)) == true)
                 locationPopup.clickRightArrowOfCarousel();

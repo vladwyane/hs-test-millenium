@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="PositiveSuite" >
+<suite name="PositiveSuite">
     <test name="Positive Tests" >
         <classes>
-            <class name="SuccessRegistrationTest" />
-            <class name="ErrorRegistrationTests" />
+            <class name="SignInTest" />
+            <class name="RegistrationTest" />
         </classes>
     </test>
 </suite>

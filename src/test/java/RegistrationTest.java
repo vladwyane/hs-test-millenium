@@ -3,9 +3,7 @@ import com.google.gson.reflect.TypeToken;
 import data.Users;
 import data.UsersData;
 import org.testng.annotations.*;
-import pages.CreateAccountPage;
-import pages.Home;
-import pages.SignInPage;
+import pages.*;
 import testBase.TestBase;
 
 import java.io.*;
@@ -17,17 +15,21 @@ import java.util.stream.Collectors;
 /**
  * Created by bigdrop on 8/31/2018.
  */
-public class SuccessRegistrationTest extends TestBase{
+public class RegistrationTest extends TestBase{
 
     private Home home;
     private SignInPage signInPage;
     private CreateAccountPage createAccountPage;
+    private GoogleMail googleMail;
+    private MassageServicePage massageServicePage;
 
     @BeforeMethod
     public void initPageObjects() {
         home = new Home(app.getDriver());
         signInPage = new SignInPage(app.getDriver());
         createAccountPage = new CreateAccountPage(app.getDriver());
+        googleMail = new GoogleMail(app.getDriver());
+        massageServicePage = new MassageServicePage(app.getDriver());
     }
 
     @DataProvider
@@ -93,6 +95,22 @@ public class SuccessRegistrationTest extends TestBase{
         createAccountPage.open();
         createAccountPage.registration(Users.LEBRON);
         createAccountPage.checkingErrorNoteExistEmail(Users.LEBRON);
+    }
+
+    @Test(priority = 3)
+    public void testSuccessEmailChangePassword() throws InterruptedException {
+        googleMail.signIntoGoogleMail(Users.VLADYSLAV);
+        googleMail.checkingEmailRegistration();
+    }
+
+    @Test(priority = 3)
+    public void testBooking() throws InterruptedException {
+        home.open();
+        massageServicePage.clickMassageService();
+        createAccountPage.chooseLocation("Cherry");
+        home.open();
+        Thread.sleep(3000);
+
     }
 
 

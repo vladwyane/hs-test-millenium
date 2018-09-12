@@ -2,6 +2,7 @@ import data.Users;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.GoogleMail;
 import pages.Home;
 import pages.SignInPage;
 import pages.account.Dashboard;
@@ -18,6 +19,7 @@ public class SignInTest extends TestBase {
     private SignInPage signInPage;
     private Dashboard dashboard;
     private Information information;
+    private GoogleMail googleMail;
 
     @BeforeMethod
     public void initPageObjects() {
@@ -25,6 +27,7 @@ public class SignInTest extends TestBase {
         home = new Home(app.getDriver());
         dashboard = new Dashboard(app.getDriver());
         information = new Information(app.getDriver());
+        googleMail = new GoogleMail(app.getDriver());
     }
 
     @AfterMethod
@@ -32,7 +35,7 @@ public class SignInTest extends TestBase {
         dashboard.logOut();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 4)
     public void testSuccessLogInFromSignInPopup() throws InterruptedException {
         home.open();
         signInPage.openSignInPopup();
@@ -40,7 +43,7 @@ public class SignInTest extends TestBase {
         dashboard.checkingAccountDashboard(Users.LEBRON);
     }
 
-    @Test(priority = 1)
+    @Test(priority = 4)
     public void testSuccessLogInFromSignInPage() throws InterruptedException {
         signInPage.open();
         signInPage.logIn(Users.DWYANE);
@@ -48,21 +51,27 @@ public class SignInTest extends TestBase {
         information.checkAccountContactInfo(Users.DWYANE);
     }
 
-    @Test(priority = 2)
+    @Test(priority = 4)
     public void testSuccessUpdateContactInfo() throws InterruptedException {
         signInPage.open();
-        signInPage.logIn(Users.LEBRON);
+        signInPage.logIn(Users.DWYANE);
         dashboard.clickAccInfoLink();
         information.updateContactInfo(Users.DWYANE);
         information.checkingSuccessPopup();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 5)
     public void testSuccessChangePassword() throws InterruptedException {
         signInPage.open();
         signInPage.logIn(Users.LEBRON);
         dashboard.clickAccInfoLink();
-        information.changePassword(Users.DWYANE);
+        information.changePassword(Users.LEBRON_UPDATE);
         information.checkingSuccessPopup();
+    }
+
+    @Test(priority = 6)
+    public void testSuccessEmailChangePassword() throws InterruptedException {
+        googleMail.signIntoGoogleMail(Users.VLADYSLAV);
+        googleMail.checkingEmailChangePass();
     }
 }
