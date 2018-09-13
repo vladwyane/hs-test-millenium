@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,6 +68,26 @@ public abstract class BasePage {
         WebDriverWait wait = new WebDriverWait(driver, 5);
         try {
             wait.until(ExpectedConditions.visibilityOf(element));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    protected boolean waitUntilElementWillBeClickable(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    protected boolean scrollToElement(WebElement element) throws InterruptedException {
+        try {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+            Thread.sleep(500);
             return true;
         } catch (Exception e) {
             return false;

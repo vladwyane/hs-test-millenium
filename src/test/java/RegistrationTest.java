@@ -4,6 +4,9 @@ import data.Users;
 import data.UsersData;
 import org.testng.annotations.*;
 import pages.*;
+import pages.booking.ChooseServices;
+import pages.booking.PaymentInformation;
+import pages.booking.PrefferedDateTime;
 import testBase.TestBase;
 
 import java.io.*;
@@ -22,6 +25,9 @@ public class RegistrationTest extends TestBase{
     private CreateAccountPage createAccountPage;
     private GoogleMail googleMail;
     private MassageServicePage massageServicePage;
+    private ChooseServices chooseServices;
+    private PrefferedDateTime prefferedDateTime;
+    private PaymentInformation paymentInformation;
 
     @BeforeMethod
     public void initPageObjects() {
@@ -30,6 +36,9 @@ public class RegistrationTest extends TestBase{
         createAccountPage = new CreateAccountPage(app.getDriver());
         googleMail = new GoogleMail(app.getDriver());
         massageServicePage = new MassageServicePage(app.getDriver());
+        chooseServices = new ChooseServices(app.getDriver());
+        prefferedDateTime = new PrefferedDateTime(app.getDriver());
+        paymentInformation = new PaymentInformation(app.getDriver());
     }
 
     @DataProvider
@@ -108,8 +117,10 @@ public class RegistrationTest extends TestBase{
         home.open();
         massageServicePage.clickMassageService();
         createAccountPage.chooseLocation("Cherry");
-        home.open();
-        Thread.sleep(3000);
+        chooseServices.chooseService("Massage", "1 hour 30 min" );
+        prefferedDateTime.chooseTherapistAndDateTime("Any Employee", "Sep 18", "02:00");
+        paymentInformation.fillRegistrationFields(Users.VLADYSLAV);
+
 
     }
 
