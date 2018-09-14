@@ -76,8 +76,10 @@ public class Information extends BasePage {
         accountContactInfoForm.getStateSelect().click();
         try {
             for(WebElement element : listState) {
-                if(element.getText().equals(stateName) || element.equals(listState.get(listState.size() - 1)))
+                if(element.getText().equals(stateName) || element.getText().equals(listState.get(listState.size() - 1).getText())) {
                     element.click();
+                    return;
+                }
             }
         }
         catch(org.openqa.selenium.StaleElementReferenceException ex){}

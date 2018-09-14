@@ -13,7 +13,7 @@ import java.util.List;
  * Created by bigdrop on 9/13/2018.
  */
 @Block(@FindBy(className = "booking-information-form"))
-public class BookingInformationForm extends HtmlElement {
+public class ContactInformationForm extends HtmlElement {
 
     public TextInput getUserFirstName() {
         return userFirstName;

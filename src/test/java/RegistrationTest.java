@@ -1,10 +1,12 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import data.CreditCards;
 import data.Users;
 import data.UsersData;
 import org.testng.annotations.*;
 import pages.*;
 import pages.booking.ChooseServices;
+import pages.booking.Confirmation;
 import pages.booking.PaymentInformation;
 import pages.booking.PrefferedDateTime;
 import testBase.TestBase;
@@ -24,10 +26,6 @@ public class RegistrationTest extends TestBase{
     private SignInPage signInPage;
     private CreateAccountPage createAccountPage;
     private GoogleMail googleMail;
-    private MassageServicePage massageServicePage;
-    private ChooseServices chooseServices;
-    private PrefferedDateTime prefferedDateTime;
-    private PaymentInformation paymentInformation;
 
     @BeforeMethod
     public void initPageObjects() {
@@ -35,10 +33,6 @@ public class RegistrationTest extends TestBase{
         signInPage = new SignInPage(app.getDriver());
         createAccountPage = new CreateAccountPage(app.getDriver());
         googleMail = new GoogleMail(app.getDriver());
-        massageServicePage = new MassageServicePage(app.getDriver());
-        chooseServices = new ChooseServices(app.getDriver());
-        prefferedDateTime = new PrefferedDateTime(app.getDriver());
-        paymentInformation = new PaymentInformation(app.getDriver());
     }
 
     @DataProvider
@@ -70,7 +64,7 @@ public class RegistrationTest extends TestBase{
     }
 
     @Test(priority = 1)
-    public void testSuccessRegistrationFromSignUpPage() throws InterruptedException {
+    public void testSuccessRegistrationFromSignUpPage() {
         home.open();
         createAccountPage.openRegistrationPage();
         createAccountPage.registration(Users.LEBRON);
@@ -79,14 +73,14 @@ public class RegistrationTest extends TestBase{
 
 
     @Test(priority = 1)
-    public void testSuccessRegistrationFromSignInPage() throws InterruptedException {
+    public void testSuccessRegistrationFromSignInPage() {
         signInPage.openCreateAccPageFromSignIn();
         createAccountPage.registration(Users.DWYANE);
         createAccountPage.checkingSuccessOfRegistration();
     }
 
     @Test(priority = 2)
-    public void testErrorRegistrationAllFieldsBlank() throws InterruptedException {
+    public void testErrorRegistrationAllFieldsBlank() {
         createAccountPage.open();
         createAccountPage.clickCreateAccButWithEmptyFields();
         createAccountPage.checkingErrorNotesAllFieldsAreBlank();
@@ -107,22 +101,9 @@ public class RegistrationTest extends TestBase{
     }
 
     @Test(priority = 3)
-    public void testSuccessEmailChangePassword() throws InterruptedException {
+    public void testSuccessEmailChangePassword()  {
         googleMail.signIntoGoogleMail(Users.VLADYSLAV);
         googleMail.checkingEmailRegistration();
     }
-
-    @Test(priority = 3)
-    public void testBooking() throws InterruptedException {
-        home.open();
-        massageServicePage.clickMassageService();
-        createAccountPage.chooseLocation("Cherry");
-        chooseServices.chooseService("Massage", "1 hour 30 min" );
-        prefferedDateTime.chooseTherapistAndDateTime("Any Employee", "Sep 18", "02:00");
-        paymentInformation.fillRegistrationFields(Users.VLADYSLAV);
-
-
-    }
-
 
 }

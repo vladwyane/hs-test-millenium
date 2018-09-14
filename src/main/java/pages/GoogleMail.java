@@ -41,7 +41,7 @@ public class GoogleMail extends BasePage {
     @FindBys( {@FindBy(css = "div span b")} )
     public List<HtmlElement> listTitleLetters;
 
-    public void signIntoGoogleMail(Users users) throws InterruptedException {
+    public void signIntoGoogleMail(Users users) {
         open();
         waitUntilElementAppeared(nextIndButton);
         type(loginField, users.getEmail());
@@ -60,6 +60,11 @@ public class GoogleMail extends BasePage {
 
     public void checkingEmailRegistration() {
         softAssert.assertEquals(listTitleLetters.get(0).getText(), "Hand&Stone");
+        softAssert.assertAll();
+    }
+
+    public void checkingEmailBooking() {
+        softAssert.assertEquals(listTitleLetters.get(0).getText(), "Hand & Stone Booking");
         softAssert.assertAll();
     }
 }

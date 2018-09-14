@@ -32,12 +32,13 @@ public class PrefferedDateTime extends BasePage {
     @FindBy(css= "a.continue")
     private Button continueBut;
 
-    public void chooseTherapistAndDateTime(String therapistSpecific, String date, String time) {
+    public String chooseTherapistAndDateTime(String therapistSpecific, String date, String time) {
         waitUntilElementWillBeClickable(therapistPreferences.getListTherapistPreferences().get(0));
         therapistPreferences.chooseTherapistPreferences(therapistSpecific);
         chooseAppointmentDate(date);
-        chooseAppointmentTime(time);
+        String therapistName = chooseAppointmentTime(time);
         continueBut.click();
+        return therapistName;
     }
 
     public void chooseAppointmentDate(String date) {
@@ -57,8 +58,6 @@ public class PrefferedDateTime extends BasePage {
     public String chooseAppointmentTime(String time) {
         List<HtmlElement> listTime = therapistSchedule.getListTimeTherapist();
         for (int i = 0; i < listTime.size(); i++) {
-            String timeer = listTime.get(i).getText();
-            boolean res = listTime.get(i).getAttribute("class").contains("disabled");
             if(listTime.get(i).getText().contains(time) && listTime.get(i).getAttribute("class").contains("disabled") == false) {
                 listTime.get(i).click();
                 return therapistSchedule.getTherapistNameActive().getText();

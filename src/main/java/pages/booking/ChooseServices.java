@@ -32,7 +32,7 @@ public class ChooseServices extends BasePage {
     @FindBy(css= "a.continue")
     private Button continueBut;
 
-    public void chooseService(String serviceName, String timeDuration) throws InterruptedException {
+    public void chooseServiceAsGuest(String serviceName, String timeDuration) throws InterruptedException {
         authorizationBlock.getContinueAsGuestBut().click();
         services.chooseService(serviceName);
         scrollToElement(duration);
