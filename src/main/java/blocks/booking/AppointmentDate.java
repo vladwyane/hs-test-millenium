@@ -20,7 +20,7 @@ public class AppointmentDate extends HtmlElement {
     }
 
     @Name("ArrayList of appointment date")
-    @FindBys( {@FindBy(css = ".date-list li b")} )
+    @FindBys( {@FindBy(css = ".date-list li button")} )
     public List<HtmlElement> listAppointmentDate;
 
     public Button getNextArrowOfCarousel() {
@@ -32,5 +32,16 @@ public class AppointmentDate extends HtmlElement {
 
     public void clickNextArrow() {
         nextArrowOfCarousel.click();
+    }
+
+    public Button getPrevArrowOfCarousel() {
+        return prevArrowOfCarousel;
+    }
+
+    @FindBy(css = "button.prev")
+    protected Button prevArrowOfCarousel;
+
+    public void clickPrevArrow() {
+        prevArrowOfCarousel.click();
     }
 }

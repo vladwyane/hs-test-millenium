@@ -14,6 +14,10 @@ public enum Users {
             "Bear", "322 NY 32th Street", "New York", "New York", "1001"),
     DWYANE_UPDATE("Dwyane", "Wade", "vladyslav.chesalov+9@bigdropinc.com", "JR6GMs4yw", "JR6GMs4ywGnew", "JR6GMs4ywGnew", "9087654321",
             "Bear", "322 NY 32th Street", "New York", "New York", "1001"),
+    ALLEN("Ray", "Allen", "vladyslav.chesalov+10@bigdropinc.com", "JR6GMs4ywnew", "JR6GMs4ywG", "JR6GMs4ywG", "1212121212",
+            "Cherry", "322 NY 32th Street", "New York", "New York", "1001"),
+    MEMBER("Vladyslav", "Chesalov", "vladyslav.chesalov+3@bigdropinc.com", "JR6GMs4ywnew", "JR6GMs4ywG", "JR6GMs4ywG", "3325546657",
+            "Cherry", "322 NY 32th Street", "Miami", "Florida", "33101"),
     INVALID("Invalid", "Test", "vladyslav.chesalov+8@bigdropinc.com", "JR6GMs4ywG", "JR6GMs4yw", "JR6GMs4ywGnew", "9087654321",
             "Cherry", "3275 NW 24th Street Rd", "Miami", "Florida", "33101");
 

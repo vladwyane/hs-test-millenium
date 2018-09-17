@@ -50,6 +50,7 @@ public class ApplicationManager {
         } else if (browser.equals(BrowserType.EDGE)) {
             driver = new EdgeDriver();
         }
+        driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Long.parseLong(ConfigProperties.getProperty("imp.wait")), TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
@@ -60,6 +61,10 @@ public class ApplicationManager {
         if (driver != null) {
             driver.quit();
         }
+    }
+
+    public void delleteAllCookies() {
+        driver.manage().deleteAllCookies();
     }
 
     public byte[] takeScreenshot() {

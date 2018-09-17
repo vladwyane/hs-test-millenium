@@ -37,6 +37,7 @@ public class PrefferedDateTime extends BasePage {
         therapistPreferences.chooseTherapistPreferences(therapistSpecific);
         chooseAppointmentDate(date);
         String therapistName = chooseAppointmentTime(time);
+        waitUntilTextInElementAppear(therapistPreferences, "waiting");
         continueBut.click();
         return therapistName;
     }
@@ -46,25 +47,34 @@ public class PrefferedDateTime extends BasePage {
         for (int i = 0; i < listDate.size() - 30; i++) {
             if(isElementInvisible(listDate.get(i)) == true)
                 appointmentDate.clickNextArrow();
-            if(listDate.get(i).getText().equals(date) && waitUntilElementWillBeClickable(listDate.get(i)) == true) {
+            boolean res = isElementContainsAttributeValue(listDate.get(i), "class", "disabled");
+            String ter = listDate.get(i).getText();
+            if(listDate.get(i).getText().contains(date) && isElementContainsAttributeValue(listDate.get(i), "class", "disabled") == false) {
                 listDate.get(i).click();
                 return;
             }
         }
-        therapistPreferences.chooseTherapistPreferences("Any Male");
-        listDate.get(0).click();
+        for (int i = listDate.size() - 30; i > 0; i--) {
+            if(isElementInvisible(listDate.get(i)) == true)
+                appointmentDate.clickPrevArrow();
+            if(isElementContainsAttributeValue(listDate.get(i), "class", "disabled") == false) {
+                listDate.get(i).click();
+                return;
+            }
+        }
+        listDate.get(1).click();
     }
 
     public String chooseAppointmentTime(String time) {
         List<HtmlElement> listTime = therapistSchedule.getListTimeTherapist();
         for (int i = 0; i < listTime.size(); i++) {
-            if(listTime.get(i).getText().contains(time) && listTime.get(i).getAttribute("class").contains("disabled") == false) {
+            if(listTime.get(i).getText().contains(time) && isElementContainsAttributeValue(listTime.get(i), "class", "disabled") == false) {
                 listTime.get(i).click();
                 return therapistSchedule.getTherapistNameActive().getText();
             }
         }
         for (int i = 0; i < listTime.size(); i++) {
-            if(waitUntilElementWillBeClickable(listTime.get(i)) == true) {
+            if(isElementContainsAttributeValue(listTime.get(i), "class", "disabled") == false) {
                 listTime.get(i).click();
                 return therapistSchedule.getTherapistNameActive().getText();
             }

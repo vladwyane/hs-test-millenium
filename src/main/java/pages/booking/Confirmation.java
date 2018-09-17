@@ -26,11 +26,11 @@ public class Confirmation extends BasePage {
     public void checkingSuccessBooking(String location, String service, String therapist, String duration, String date) {
         waitUntilElementAppeared(successMessageBlock);
         softAssert.assertEquals(successMessageBlock.getSuccessHeading().getText(), "CONGRATULATIONS!");
-        softAssert.assertTrue(bookingDetail.containsLocation(location), "Location not found");
-        softAssert.assertTrue(bookingDetail.containsService(service), "Service not found");
-        softAssert.assertTrue(bookingDetail.containsTherapist(therapist), "Therapist not found");
-        softAssert.assertTrue(bookingDetail.containsDuration(duration), "Duration not found");
-        softAssert.assertTrue(bookingDetail.containsDate(date), "Date not found");
+        softAssert.assertTrue(bookingDetail.containsLocation(location), "Location " + location + " not found");
+        softAssert.assertTrue(bookingDetail.containsService(service), "Service " + service + " not found");
+        softAssert.assertTrue(bookingDetail.containsTherapist(therapist), "Therapist " + therapist + " not found");
+        softAssert.assertTrue(bookingDetail.containsDuration(duration), "Duration " + duration + " not found");
+        softAssert.assertTrue(bookingDetail.containsDate(date), "Date " + date + " not found");
         softAssert.assertAll();
     }
 }

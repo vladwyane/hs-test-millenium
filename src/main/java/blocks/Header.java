@@ -51,4 +51,12 @@ public class Header extends HtmlElement {
         }
         list.get(list.size() - 1).click();
     }
+
+    @FindBy(xpath = "//div[@class='your-location']//a[contains(text(), 'Change Location')]")
+    private Link changeLocationLink;
+
+    public void clickChangeLocationLink() {
+        changeLocationLink.click();
+    }
+
 }

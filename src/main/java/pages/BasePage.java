@@ -94,4 +94,9 @@ public abstract class BasePage {
         }
     }
 
+    protected boolean isElementContainsAttributeValue(WebElement element, String attribute, String attributeValue) {
+        if (element.getAttribute(attribute).contains(attributeValue) == true)
+            return true;
+        else return false;
+    }
 }

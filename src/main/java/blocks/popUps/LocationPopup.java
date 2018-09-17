@@ -7,6 +7,7 @@ import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.Link;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class LocationPopup extends HtmlElement{
     protected Button rightArrowOfCarousel;
 
     public void clickRightArrowOfCarousel() {
-        findLocationLink.click();
+        rightArrowOfCarousel.click();
     }
 
     public List<HtmlElement> getTitlesLocationList() {
@@ -42,5 +43,23 @@ public class LocationPopup extends HtmlElement{
     @Name("ArrayList of locations buttons-select")
     @FindBys( {@FindBy(xpath = "//div[contains (@class, 'location-popup-loader')]//li//a[contains (@class, 'btn')]")} )
     private List<Button> selectButLocationList;
+
+    public TextInput getSearchField() {
+        return searchField;
+    }
+
+    @FindBy(id = "location-popup-address")
+    private TextInput searchField;
+
+    public Button getFindStoreBut() {
+        return findStoreBut;
+    }
+
+    @FindBy(xpath = "//div[@class='search-location']//input[@value='Find Stores']")
+    private Button findStoreBut;
+
+    public void clickFindStoreBut() {
+        findStoreBut.click();
+    }
 
 }

@@ -31,8 +31,8 @@ public class SignInTest extends TestBase {
     }
 
     @AfterMethod
-    public void logOut() {
-        dashboard.logOut();
+    public void clearAllCookies() {
+        app.delleteAllCookies();
     }
 
     @Test(priority = 4)

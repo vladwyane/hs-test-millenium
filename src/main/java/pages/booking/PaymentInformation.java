@@ -1,6 +1,7 @@
 package pages.booking;
 
 import blocks.booking.ContactInformationForm;
+import blocks.booking.PasswordForm;
 import blocks.booking.PaymentInformationForm;
 import data.CreditCards;
 import data.Users;
@@ -21,6 +22,7 @@ public class PaymentInformation extends BasePage {
 
     private ContactInformationForm contactInformationForm;
     private PaymentInformationForm paymentInformationForm;
+    private PasswordForm passwordForm;
 
     @Override
     public void open() {
@@ -34,9 +36,18 @@ public class PaymentInformation extends BasePage {
     private Button confirmBockingBut;
 
 
-    public void fillPaymentInformation(Users users, CreditCards creditCards) {
+    public void fillPaymentInformation(Users users, CreditCards creditCards, boolean createAccount) {
         fillContactInformation(users);
         fillCreditCardInfo(users, creditCards);
+        if(createAccount == true)
+            fillPasswordField(users);
+        cancellationPolicyCheckBox.click();
+        confirmBockingBut.click();
+    }
+
+    public void fillPaymentInformationForMember() throws InterruptedException {
+        scrollToElement(cancellationPolicyCheckBox);
+        contactInformationForm.getPrivatePolicyCheckBox().click();
         cancellationPolicyCheckBox.click();
         confirmBockingBut.click();
     }
@@ -57,6 +68,12 @@ public class PaymentInformation extends BasePage {
         type(paymentInformationForm.getZipCodeField(), users.getZipCode());
         paymentInformationForm.chooseMonth(creditCards.getCardMonth());
         paymentInformationForm.chooseYear(creditCards.getCardYear());
+        return this;
+    }
+
+    public PaymentInformation fillPasswordField(Users users) {
+        type(passwordForm.getPasswordField(), users.getNewPassword());
+        type(passwordForm.getConfirmPassField(), users.getConfPassword());
         return this;
     }
 }
