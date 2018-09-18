@@ -1,9 +1,7 @@
 package pages.booking;
 
-import blocks.booking.AddAromaServices;
-import blocks.booking.AuthorizationBlock;
-import blocks.booking.Duration;
-import blocks.booking.Services;
+import blocks.booking.*;
+import data.Users;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
@@ -23,6 +21,7 @@ public class ChooseServices extends BasePage {
     AuthorizationBlock authorizationBlock;
     Duration duration;
     AddAromaServices addAromaServices;
+    IntroductoryPrices introductoryPrices;
 
     @Override
     public void open() {
@@ -43,7 +42,10 @@ public class ChooseServices extends BasePage {
         continueBut.click();
     }
 
-    public void chooseServiceAsMember(String serviceName, String timeDuration, boolean addAromaService) throws InterruptedException {
+    public void chooseServiceAsMember(String serviceName, String timeDuration, Users users, boolean addAromaService) throws InterruptedException {
+        type(authorizationBlock.getEmailField(), users.getEmail());
+        type(authorizationBlock.getPasswordField(), users.getNewPassword());
+        authorizationBlock.getLoginBut().click();
         services.chooseService(serviceName);
         scrollToElement(duration);
         duration.chooseTimeDuration(timeDuration);
@@ -51,5 +53,16 @@ public class ChooseServices extends BasePage {
         if(addAromaService == true)
             addAromaServices.chooseAddAromaService();
         continueBut.click();
+    }
+
+    public void chooseServiceAsFirstVisitor(String serviceName) throws InterruptedException {
+        authorizationBlock.getFirstVisitorBut().click();
+        for (int i = 0; i < introductoryPrices.getListIntroTitles().size(); i++) {
+            if(introductoryPrices.getListIntroTitles().get(i).getText().contains(serviceName.toUpperCase())) {
+                introductoryPrices.getListIntroServiceBut().get(i).click();
+                return;
+            }
+        }
+        introductoryPrices.getListIntroServiceBut().get(0).click();
     }
 }

@@ -6,7 +6,9 @@ package data;
 public enum CreditCards {
 
     VISA_STRIPE("Stripe VISA", "4242424242424242", "October", "2020", "123"),
-    MASTERCART_STRIPE("Stripe Master", "5555555555554444", "APRIL", "2021", "989");
+    TEST_CARD("Test Master", "5534727490123983", "May", "2022", "128"),
+    MASTERCART_STRIPE("Stripe Master", "5555555555554444", "April", "2021", "989");
+
 
 
     private String cardName;

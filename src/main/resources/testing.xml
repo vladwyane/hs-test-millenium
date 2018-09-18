@@ -1,9 +1,70 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="PositiveSuite">
-    <test name="Positive Tests" >
+    <test name="PositiveTests">
         <classes>
-            <class name="SignInTest" />
-            <class name="RegistrationTest" />
+            <class name="Registration" >
+                <methods>
+                    <include name="testSuccessRegistrationFromSignUpPage"></include>
+                    <include name="testSuccessRegistrationFromSignInPage"></include>
+                    <include name="testSuccessEmailRegistration"></include>
+                </methods>
+            </class>
+            <class name="IntroBooking" >
+                <methods>
+                    <include name="testBookingAsFistTimeVisitor"></include>
+                </methods>
+            </class>
+            <class name="Booking" >
+                <methods>
+                    <include name="testBookingAsGuest"></include>
+                    <include name="testBookingAsMember"></include>
+                    <include name="testBookingWithRegistration"></include>
+                    <include name="testSuccessEmailBooking"></include>
+                </methods>
+            </class>
+            <class name="LMDBooking" >
+                <methods>
+                    <include name="testLMDBookingFromHomePage"></include>
+                    <include name="testLMDBookingFromSpaDealsPage"></include>
+                    <include name="testLMDBookingFromLocationPage"></include>
+                </methods>
+            </class>
+            <class name="SignIn" >
+                <methods>
+                    <include name="testSuccessLogInFromSignInPopup"></include>
+                    <include name="testSuccessLogInFromSignInPage"></include>
+                    <include name="testSuccessUpdateContactInfo"></include>
+                    <include name="testSuccessChangePassword"></include>
+                    <include name="testSuccessEmailChangePassword"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="NegativeTests">
+        <classes>
+            <class name="Registration" >
+                <methods>
+                    <include name="testErrorRegistrationAllFieldsBlank"></include>
+                    <include name="testErrorRegistrationNotMatchPassword"></include>
+                    <include name="testErrorRegistrationExistEmail"></include>
+                </methods>
+            </class>
+            <class name="IntroBooking" >
+                <methods>
+                    <include name="testBookingAsFistTimeVisitorWithExistEmail"></include>
+                </methods>
+            </class>
+            <class name="Booking" >
+                <methods>
+                    <include name="testBookingAsGuestWithInvalidCard"></include>
+                </methods>
+            </class>
+            <class name="LMDBooking" >
+                <methods>
+                    <include name="testLMDBookingNothingFound"></include>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
+

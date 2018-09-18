@@ -64,13 +64,13 @@ public class GoogleMail extends BasePage {
     }
 
     public void checkingEmailBooking() {
-        softAssert.assertEquals(listTitleLetters.get(0).getText(), "Hand & Stone Booking");
+        softAssert.assertEquals(listTitleLetters.get(0).getText(), "Hand&Stone Booking");
         softAssert.assertAll();
     }
 
     public void checkingEmailBookingWithRegistration() {
         softAssert.assertEquals(listTitleLetters.get(0).getText(), "Hand&Stone");
-        softAssert.assertEquals(listTitleLetters.get(2).getText(), "Hand & Stone Booking");
+        softAssert.assertEquals(listTitleLetters.get(2).getText(), "Hand&Stone Booking");
         softAssert.assertAll();
     }
 }

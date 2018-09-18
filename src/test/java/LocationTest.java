@@ -1,3 +1,4 @@
+/*
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.Home;
@@ -6,9 +7,11 @@ import testBase.TestBase;
 
 
 
+*/
 /**
  * Created by bigdrop on 9/17/2018.
- */
+ *//*
+
 public class LocationTest extends TestBase{
 
     private Locations location;
@@ -29,3 +32,4 @@ public class LocationTest extends TestBase{
         Thread.sleep(10000);
     }
 }
+*/

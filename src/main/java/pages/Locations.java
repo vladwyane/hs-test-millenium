@@ -31,7 +31,11 @@ public class Locations extends BasePage{
         driver.get(ConfigProperties.getProperty("locations.url"));
     }
 
-    @Name("ArrayList of available location")
+    @Name("ArrayList of buttons more details locations")
+    @FindBys( {@FindBy(xpath = "//a[contains(text(), 'More details')]")} )
+    public List<Button> listButDetailLocation;
+
+    @Name("ArrayList of buttons available locations")
     @FindBys( {@FindBy(xpath = "//a[contains(text(), 'Make it my store')]")} )
     public List<Button> listButAvailableLocation;
 
@@ -39,6 +43,13 @@ public class Locations extends BasePage{
         type(locationsNav.getSearchField(), locationName);
         locationsNav.clickFindStoreBut();
         listButAvailableLocation.get(0).click();
+        return this;
+    }
+
+    public Locations moveToLocationDetail(String locationName) {
+        type(locationsNav.getSearchField(), locationName);
+        locationsNav.clickFindStoreBut();
+        listButDetailLocation.get(0).click();
         return this;
     }
 
