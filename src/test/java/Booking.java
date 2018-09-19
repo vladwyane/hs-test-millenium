@@ -57,11 +57,11 @@ public class Booking extends TestBase {
         locations.changeLocation(LocationsData.CHERRY_HILL);
         facialServicePage.clickFacialService();
         chooseServices.chooseServiceAsGuest(ServicesData.NMFC50, false);
-        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER21_12PM);
+        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER22_12PM);
         paymentInformation.fillPaymentInformation(Users.ALLEN, CreditCards.VISA_STRIPE, true);
         signInPage.open();
         signInPage.logIn(Users.ALLEN);
-        dashboard.checkingAppointments(DateTime.SEPTEMBER21_12PM, therapistName, ServicesData.NMFC50, LocationsData.CHERRY_HILL);
+        dashboard.checkingAppointments(DateTime.SEPTEMBER22_12PM, therapistName, ServicesData.NMFC50, LocationsData.CHERRY_HILL);
     }
 
     @Test()
@@ -70,9 +70,9 @@ public class Booking extends TestBase {
         massageServicePage.clickMassageService();
         createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
         chooseServices.chooseServiceAsGuest(ServicesData.NM80, true);
-        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER21_12PM);
+        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER22_12PM);
         paymentInformation.fillPaymentInformation(Users.LEBRON, CreditCards.VISA_STRIPE, false);
-        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.NM80, therapistName, DateTime.SEPTEMBER21_12PM);
+        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.NM80, therapistName, DateTime.SEPTEMBER22_12PM);
     }
 
     @Test()
@@ -82,9 +82,9 @@ public class Booking extends TestBase {
         locations.chooseLocationFromLocationPage(LocationsData.CHERRY_HILL);
         massageServicePage.clickMassageService();
         chooseServices.chooseServiceAsMember(ServicesData.NM50, Users.MEMBER, false);
-        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER30_10AM);
+        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER22_12PM);
         paymentInformation.fillPaymentInformationForMember();
-        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.NM50, therapistName, DateTime.SEPTEMBER30_10AM);
+        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.NM50, therapistName, DateTime.SEPTEMBER22_12PM);
     }
 
     @Test()
@@ -93,11 +93,11 @@ public class Booking extends TestBase {
         facialServicePage.clickFacialService();
         createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
         chooseServices.chooseServiceAsGuest(ServicesData.NMTFC, true);
-        prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.OCTOBER11_3PM);
+        prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER22_12PM);
         paymentInformation.fillPaymentInformation(Users.DWYANE, CreditCards.TEST_CARD, false);
         confirmation.checkingErrorBooking();
     }
-    
+
     @Test()
     public void testSuccessEmailBooking() throws InterruptedException {
         googleMail.signIntoGoogleMail(Users.VLADYSLAV);

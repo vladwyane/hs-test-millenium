@@ -48,9 +48,9 @@ public class IntroBooking extends TestBase {
         massageServicePage.clickMassageService();
         createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
         chooseServices.chooseServiceAsFirstVisitor(ServicesData.INTROHS50);
-        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER30_10AM);
+        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER22_12PM);
         paymentInformation.fillPaymentInformation(Users.ALLEN, CreditCards.VISA_STRIPE, false);
-        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.INTROHS50, therapistName, DateTime.SEPTEMBER30_10AM);
+        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.INTROHS50, therapistName, DateTime.SEPTEMBER22_12PM);
     }
 
     @Test()
@@ -59,10 +59,8 @@ public class IntroBooking extends TestBase {
         massageServicePage.clickMassageService();
         createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
         chooseServices.chooseServiceAsFirstVisitor(ServicesData.INTROHS50);
-        prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER21_12PM);
+        prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER22_12PM);
         paymentInformation.fillPaymentInformation(Users.ALLEN, CreditCards.VISA_STRIPE, false);
         confirmation.checkingErrorBooking();
     }
-
-
 }
