@@ -99,4 +99,5 @@ public abstract class BasePage {
             return true;
         else return false;
     }
+
 }

@@ -2,7 +2,11 @@ package pages.account;
 
 import blocks.Header;
 import blocks.account.AccountIdInfo;
+import blocks.account.AppointmentTable;
 import blocks.account.DashboardInfo;
+import data.DateTime;
+import data.LocationsData;
+import data.ServicesData;
 import data.Users;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +26,7 @@ public class Dashboard extends BasePage {
     private AccountIdInfo accountIdInfo;
     private DashboardInfo dashboardInfo;
     private Header header;
+    private AppointmentTable appointmentTable;
 
     @Override
     public void open() {
@@ -83,5 +88,13 @@ public class Dashboard extends BasePage {
         if (isElementPresent(dashboardInfo.getUserStatus()) == true) {
             clickLogoutLink();
         }
+    }
+
+    public void checkingAppointments(DateTime dateTime, String therapist, ServicesData servicesData, LocationsData locationsData) {
+        softAssert.assertTrue(appointmentTable.getCellFromAppTable("Date", dateTime.getDate(), 2), "Date not found");
+        softAssert.assertTrue(appointmentTable.getCellFromAppTable("Therapist", therapist,1), "Therapist not found");
+        softAssert.assertTrue(appointmentTable.getCellFromAppTable("Procedure", servicesData.getServiceName(),0), "Procedure not found");
+        softAssert.assertTrue(appointmentTable.getCellFromAppTable("Location", locationsData.getLocationName(), 0), "Location not found");
+        softAssert.assertAll();
     }
 }

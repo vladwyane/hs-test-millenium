@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="NegativeSuite">
+    <test name="NegativeTests">
+        <classes>
+            <class name="Registration" >
+                <methods>
+                    <include name="testErrorRegistrationAllFieldsBlank"></include>
+                    <include name="testErrorRegistrationNotMatchPassword"></include>
+                    <include name="testErrorRegistrationExistEmail"></include>
+                </methods>
+            </class>
+            <class name="IntroBooking" >
+                <methods>
+                    <include name="testBookingAsFistTimeVisitorWithExistEmail"></include>
+                </methods>
+            </class>
+            <class name="Booking" >
+                <methods>
+                    <include name="testBookingAsGuestWithInvalidCard"></include>
+                </methods>
+            </class>
+            <class name="LMDBooking" >
+                <methods>
+                    <include name="testLMDBookingNothingFound"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

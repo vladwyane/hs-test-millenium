@@ -1,14 +1,15 @@
 import data.CreditCards;
-        import data.Users;
-        import org.testng.annotations.AfterMethod;
-        import org.testng.annotations.BeforeMethod;
-        import org.testng.annotations.Test;
-        import pages.*;
-        import pages.booking.ChooseServices;
-        import pages.booking.Confirmation;
-        import pages.booking.PaymentInformation;
-        import pages.booking.PrefferedDateTime;
-        import testBase.TestBase;
+import data.LocationsData;
+import data.Users;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import pages.*;
+import pages.booking.ChooseServices;
+import pages.booking.Confirmation;
+import pages.booking.PaymentInformation;
+import pages.booking.PrefferedDateTime;
+import testBase.TestBase;
 
 /**
  * Created by bigdrop on 9/18/2018.
@@ -52,18 +53,17 @@ public class LMDBooking extends TestBase {
 
     @Test()
     public void testLMDBookingNothingFound() throws InterruptedException {
-        String locationName = "Cherry Hill";
         home.open();
         locations.clickLocationItemFromMainNav();
-        locations.chooseLocationFromLocationPage(locationName);
+        locations.chooseLocationFromLocationPage(LocationsData.CHERRY_HILL);
         home.open();
+        home.checkingNothingFoundSection();
     }
 
     @Test()
     public void testLMDBookingFromHomePage() throws InterruptedException {
-        String locationName = "Cherry Hill";
         locations.open();
-        locations.chooseLocationFromLocationPage(locationName);
+        locations.chooseLocationFromLocationPage(LocationsData.CHERRY_HILL);
         home.open();
         home.chooseFirstLMDServiceFromAvailable();
         paymentInformation.fillPaymentInformation(Users.LEBRON, CreditCards.VISA_STRIPE, false);
@@ -72,10 +72,9 @@ public class LMDBooking extends TestBase {
 
     @Test()
     public void testLMDBookingFromSpaDealsPage() throws InterruptedException {
-        String locationName = "Cherry";
         home.open();
         lastDealsPage.clickSpaDealsItemFromMainNav();
-        createAccountPage.chooseLocation(locationName);
+        createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
         lastDealsPage.chooseFirstLMDServiceFromAvailable();
         paymentInformation.fillPaymentInformation(Users.LEBRON, CreditCards.VISA_STRIPE, false);
         confirmation.checkingSuccessLMDBooking();
@@ -83,9 +82,8 @@ public class LMDBooking extends TestBase {
 
     @Test()
     public void testLMDBookingFromLocationPage() throws InterruptedException {
-        String locationName = "Cherry Hill";
         locations.open();
-        locations.moveToLocationDetail(locationName);
+        locations.moveToLocationDetail(LocationsData.CHERRY_HILL);
         home.chooseFirstLMDServiceFromAvailable();
         paymentInformation.fillPaymentInformation(Users.LEBRON, CreditCards.VISA_STRIPE, false);
         confirmation.checkingSuccessLMDBooking();

@@ -5,21 +5,21 @@ package data;
  */
 public enum Users {
     VLADYSLAV("Lebron", "James", "vladyslav.chesalov@bigdropinc.com", "JR6GMs4ywGnew", "rdf49dw07", "JR6GMs4ywG", "0123456789",
-            "Cherry", "3275 NW 24th Street Rd", "Miami", "Florida", "33101"),
+             "3275 NW 24th Street Rd", "Miami", "Florida", "33101"),
     LEBRON("Lebron", "James", "vladyslav.chesalov+8@bigdropinc.com", "JR6GMs4ywGnew", "JR6GMs4ywG", "JR6GMs4ywG", "0123456789",
-            "Cherry", "3275 NW 24th Street Rd", "Miami", "Florida", "33101"),
+            "3275 NW 24th Street Rd", "Miami", "Florida", "33101"),
     LEBRON_UPDATE("Lebron", "James", "vladyslav.chesalov+8@bigdropinc.com", "JR6GMs4ywG", "JR6GMs4ywGnew", "JR6GMs4ywGnew", "0123456789",
-            "Cherry", "3275 NW 24th Street Rd", "Miami", "Florida", "33101"),
+            "3275 NW 24th Street Rd", "Miami", "Florida", "33101"),
     DWYANE("Dwyane", "Wade", "vladyslav.chesalov+9@bigdropinc.com", "JR6GMs4ywGnew", "JR6GMs4ywG", "JR6GMs4ywG", "9087654321",
-            "Bear", "322 NY 32th Street", "New York", "New York", "1001"),
+            "322 NY 32th Street", "New York", "New York", "1001"),
     DWYANE_UPDATE("Dwyane", "Wade", "vladyslav.chesalov+9@bigdropinc.com", "JR6GMs4yw", "JR6GMs4ywGnew", "JR6GMs4ywGnew", "9087654321",
-            "Bear", "322 NY 32th Street", "New York", "New York", "1001"),
+            "322 NY 32th Street", "New York", "New York", "1001"),
     ALLEN("Ray", "Allen", "vladyslav.chesalov+10@bigdropinc.com", "JR6GMs4ywnew", "JR6GMs4ywG", "JR6GMs4ywG", "1212121212",
-            "Cherry", "322 NY 32th Street", "New York", "New York", "1001"),
+            "322 NY 32th Street", "New York", "New York", "1001"),
     MEMBER("Vladyslav", "Chesalov", "vladyslav.chesalov+3@bigdropinc.com", "JR6GMs4ywnew", "JR6GMs4ywG", "JR6GMs4ywG", "3325546657",
-            "Cherry", "322 NY 32th Street", "Miami", "Florida", "33101"),
+            "322 NY 32th Street", "Miami", "Florida", "33101"),
     INVALID("Invalid", "Test", "vladyslav.chesalov+8@bigdropinc.com", "JR6GMs4ywG", "JR6GMs4yw", "JR6GMs4ywGnew", "9087654321",
-            "Cherry", "3275 NW 24th Street Rd", "Miami", "Florida", "33101");
+            "3275 NW 24th Street Rd", "Miami", "Florida", "33101");
 
     private String firstName;
     private String lastName;
@@ -28,7 +28,6 @@ public enum Users {
     private String confPassword;
     private String newPassword;
     private String phone;
-    private String location;
     private String address;
     private String city;
     private String state;
@@ -52,10 +51,6 @@ public enum Users {
 
     public String getZipCode() {
         return zipCode;
-    }
-
-    public String getLocation() {
-        return location;
     }
 
     public String getFirstName() {
@@ -83,14 +78,13 @@ public enum Users {
     }
 
     Users(String firstName, String lastName, String email, String password, String newPassword, String confPassword,
-          String phone, String location, String address, String city, String state, String zipCode) {
+          String phone, String address, String city, String state, String zipCode) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.confPassword = confPassword;
         this.phone = phone;
-        this.location = location;
         this.address = address;
         this.city = city;
         this.state = state;

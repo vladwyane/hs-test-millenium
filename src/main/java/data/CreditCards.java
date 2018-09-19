@@ -17,7 +17,6 @@ public enum CreditCards {
     private String cardYear;
     private String cardCVV;
 
-
     public String getCardName() {
         return cardName;
     }
@@ -37,8 +36,6 @@ public enum CreditCards {
     public String getCardCVV() {
         return cardCVV;
     }
-
-  ;
 
     CreditCards(String cardName, String cardNumber, String cardMonth, String cardYear, String cardCVV) {
         this.cardNumber = cardNumber;

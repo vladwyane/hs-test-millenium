@@ -14,13 +14,13 @@ import testBase.TestBase;
 
 public class LocationTest extends TestBase{
 
-    private Locations location;
+    private LocationsData location;
     private Home home;
 
 
     @BeforeMethod
     public void initPageObjects() {
-        location = new Locations(app.getDriver());
+        location = new LocationsData(app.getDriver());
         home = new Home(app.getDriver());
     }
 

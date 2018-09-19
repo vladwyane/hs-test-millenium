@@ -74,4 +74,5 @@ public class SignIn extends TestBase {
         googleMail.signIntoGoogleMail(Users.VLADYSLAV);
         googleMail.checkingEmailChangePass();
     }
+
 }

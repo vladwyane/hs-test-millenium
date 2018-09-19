@@ -1,9 +1,9 @@
-import data.CreditCards;
-import data.Users;
+import data.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
+import pages.account.Dashboard;
 import pages.booking.ChooseServices;
 import pages.booking.Confirmation;
 import pages.booking.PaymentInformation;
@@ -26,6 +26,7 @@ public class Booking extends TestBase {
     private Confirmation confirmation;
     private Locations locations;
     private SignInPage signInPage;
+    private Dashboard dashboard;
 
     @BeforeMethod
     public void initPageObjects() {
@@ -40,6 +41,7 @@ public class Booking extends TestBase {
         confirmation = new Confirmation(app.getDriver());
         locations = new Locations(app.getDriver());
         signInPage = new SignInPage(app.getDriver());
+        dashboard = new Dashboard(app.getDriver());
     }
 
     @AfterMethod
@@ -49,73 +51,57 @@ public class Booking extends TestBase {
 
     @Test()
     public void testBookingWithRegistration() throws InterruptedException {
-        String locationName = "Cherry";
-        String serviceName = "Men's Facial Clarity";
-        String duration = "1 hour";
-        String date = "Sep 20";
         home.open();
         locations.clickLocationItemFromMainNav();
-        locations.chooseLocationFromLocationPage("Bear De");
-        locations.changeLocation(locationName);
+        locations.chooseLocationFromLocationPage(LocationsData.DE_BEAR);
+        locations.changeLocation(LocationsData.CHERRY_HILL);
         facialServicePage.clickFacialService();
-        chooseServices.chooseServiceAsGuest(serviceName, duration, false);
-        String therapistName = prefferedDateTime.chooseTherapistAndDateTime("Any Employee", date, "12:00");
+        chooseServices.chooseServiceAsGuest(ServicesData.NMFC50, false);
+        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER21_12PM);
         paymentInformation.fillPaymentInformation(Users.ALLEN, CreditCards.VISA_STRIPE, true);
-        confirmation.checkingSuccessBooking(locationName, serviceName, therapistName, duration, date);
+        signInPage.open();
+        signInPage.logIn(Users.ALLEN);
+        dashboard.checkingAppointments(DateTime.SEPTEMBER21_12PM, therapistName, ServicesData.NMFC50, LocationsData.CHERRY_HILL);
     }
 
     @Test()
     public void testBookingAsGuest() throws InterruptedException {
-        String locationName = "Cherry";
-        String serviceName = "Massage";
-        String duration = "1 hour 30 min";
-        String date = "Sep 18";
         home.open();
         massageServicePage.clickMassageService();
-        createAccountPage.chooseLocation(locationName);
-        chooseServices.chooseServiceAsGuest(serviceName, duration, true);
-        String therapistName = prefferedDateTime.chooseTherapistAndDateTime("Any Employee", date, "12:00");
+        createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
+        chooseServices.chooseServiceAsGuest(ServicesData.NM80, true);
+        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER21_12PM);
         paymentInformation.fillPaymentInformation(Users.LEBRON, CreditCards.VISA_STRIPE, false);
-        confirmation.checkingSuccessBooking(locationName, serviceName, therapistName, duration, date);
+        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.NM80, therapistName, DateTime.SEPTEMBER21_12PM);
     }
 
     @Test()
     public void testBookingAsMember() throws InterruptedException {
-        String locationName = "Cherry Hill";
-        String serviceName = "Massage";
-        String duration = "1 hour";
-        String date = "Sep 18";
         home.open();
         locations.clickLocationItemFromMainNav();
-        locations.chooseLocationFromLocationPage(locationName);
+        locations.chooseLocationFromLocationPage(LocationsData.CHERRY_HILL);
         massageServicePage.clickMassageService();
-        chooseServices.chooseServiceAsMember(serviceName, duration, Users.MEMBER, false);
-        String therapistName = prefferedDateTime.chooseTherapistAndDateTime("Any Employee", date, "04:00");
+        chooseServices.chooseServiceAsMember(ServicesData.NM50, Users.MEMBER, false);
+        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER30_10AM);
         paymentInformation.fillPaymentInformationForMember();
-        confirmation.checkingSuccessBooking(locationName, serviceName, therapistName, duration, date);
+        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.NM50, therapistName, DateTime.SEPTEMBER30_10AM);
     }
 
     @Test()
     public void testBookingAsGuestWithInvalidCard() throws InterruptedException {
-        String locationName = "Cherry";
-        String serviceName = "Teen Facial Clarity";
-        String duration = "1 hour";
-        String date = "Sep 21";
         home.open();
         facialServicePage.clickFacialService();
-        createAccountPage.chooseLocation(locationName);
-        chooseServices.chooseServiceAsGuest(serviceName, duration, true);
-        prefferedDateTime.chooseTherapistAndDateTime("Any Employee", date, "12:00");
+        createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
+        chooseServices.chooseServiceAsGuest(ServicesData.NMTFC, true);
+        prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.OCTOBER11_3PM);
         paymentInformation.fillPaymentInformation(Users.DWYANE, CreditCards.TEST_CARD, false);
         confirmation.checkingErrorBooking();
     }
-
-
+    
     @Test()
     public void testSuccessEmailBooking() throws InterruptedException {
         googleMail.signIntoGoogleMail(Users.VLADYSLAV);
-        googleMail.checkingEmailBookingWithRegistration();
+        googleMail.checkingEmailBooking();
     }
-
 
 }

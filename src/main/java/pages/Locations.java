@@ -3,6 +3,7 @@ package pages;
 import blocks.Header;
 import blocks.LocationsNav;
 import blocks.popUps.LocationPopup;
+import data.LocationsData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
@@ -39,15 +40,17 @@ public class Locations extends BasePage{
     @FindBys( {@FindBy(xpath = "//a[contains(text(), 'Make it my store')]")} )
     public List<Button> listButAvailableLocation;
 
-    public Locations chooseLocationFromLocationPage(String locationName) {
-        type(locationsNav.getSearchField(), locationName);
+    public Locations chooseLocationFromLocationPage(LocationsData locationsData) {
+        type(locationsNav.getSearchField(), locationsData.getLocationName());
+        locationsNav.getListLocationFromAutocom().get(0).click();
         locationsNav.clickFindStoreBut();
         listButAvailableLocation.get(0).click();
         return this;
     }
 
-    public Locations moveToLocationDetail(String locationName) {
-        type(locationsNav.getSearchField(), locationName);
+    public Locations moveToLocationDetail(LocationsData locationsData) {
+        type(locationsNav.getSearchField(), locationsData.getLocationName());
+        locationsNav.getListLocationFromAutocom().get(0).click();
         locationsNav.clickFindStoreBut();
         listButDetailLocation.get(0).click();
         return this;
@@ -58,13 +61,13 @@ public class Locations extends BasePage{
         header.clickMenuItem("Location");
     }
 
-    public void changeLocation(String nameLocation) {
+    public void changeLocation(LocationsData locationsData) {
         header.clickChangeLocationLink();
         locationPopup.clickFindLocationLink();
         for (int i = 0; i < locationPopup.getTitlesLocationList().size(); i++) {
             if(isElementInvisible(locationPopup.getTitlesLocationList().get(i)) == true)
                 locationPopup.clickRightArrowOfCarousel();
-            if(locationPopup.getTitlesLocationList().get(i).getText().contains(nameLocation.toUpperCase())) {
+            if(locationPopup.getTitlesLocationList().get(i).getText().contains(locationsData.getLocationName().toUpperCase())) {
                 locationPopup.getSelectButLocationList().get(i).click();
                 return;
             }

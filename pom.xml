@@ -23,7 +23,8 @@
                 <version>2.21.0</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src\main\resources\testing.xml</suiteXmlFile>
+                        <suiteXmlFile>src\main\resources\PositiveSuite.xml</suiteXmlFile>
+                        <suiteXmlFile>src\main\resources\NegativeSuite.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <testFailureIgnore>false</testFailureIgnore>
                     <argLine>

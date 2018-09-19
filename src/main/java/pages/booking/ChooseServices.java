@@ -1,12 +1,12 @@
 package pages.booking;
 
 import blocks.booking.*;
-import data.Users;
+import blocks.booking.Services;
+import data.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 import ru.yandex.qatools.htmlelements.element.Button;
-import ru.yandex.qatools.htmlelements.element.HtmlElement;
 
 /**
  * Created by bigdrop on 9/12/2018.
@@ -31,34 +31,34 @@ public class ChooseServices extends BasePage {
     @FindBy(css= "a.continue")
     private Button continueBut;
 
-    public void chooseServiceAsGuest(String serviceName, String timeDuration, boolean addAromaService) throws InterruptedException {
+    public void chooseServiceAsGuest(ServicesData servicesData, boolean addAromaService) throws InterruptedException {
         authorizationBlock.getContinueAsGuestBut().click();
-        services.chooseService(serviceName);
+        services.chooseService(servicesData.getServiceName());
         scrollToElement(duration);
-        duration.chooseTimeDuration(timeDuration);
+        duration.chooseTimeDuration(servicesData.getDuration());
         scrollToElement(addAromaServices);
         if(addAromaService == true)
             addAromaServices.chooseAddAromaService();
         continueBut.click();
     }
 
-    public void chooseServiceAsMember(String serviceName, String timeDuration, Users users, boolean addAromaService) throws InterruptedException {
+    public void chooseServiceAsMember(ServicesData servicesData, Users users, boolean addAromaService) throws InterruptedException {
         type(authorizationBlock.getEmailField(), users.getEmail());
         type(authorizationBlock.getPasswordField(), users.getNewPassword());
         authorizationBlock.getLoginBut().click();
-        services.chooseService(serviceName);
+        services.chooseService(servicesData.getServiceName());
         scrollToElement(duration);
-        duration.chooseTimeDuration(timeDuration);
+        duration.chooseTimeDuration(servicesData.getDuration());
         scrollToElement(addAromaServices);
         if(addAromaService == true)
             addAromaServices.chooseAddAromaService();
         continueBut.click();
     }
 
-    public void chooseServiceAsFirstVisitor(String serviceName) throws InterruptedException {
+    public void chooseServiceAsFirstVisitor(ServicesData servicesData) throws InterruptedException {
         authorizationBlock.getFirstVisitorBut().click();
         for (int i = 0; i < introductoryPrices.getListIntroTitles().size(); i++) {
-            if(introductoryPrices.getListIntroTitles().get(i).getText().contains(serviceName.toUpperCase())) {
+            if(introductoryPrices.getListIntroTitles().get(i).getText().contains(servicesData.getServiceName().toUpperCase())) {
                 introductoryPrices.getListIntroServiceBut().get(i).click();
                 return;
             }

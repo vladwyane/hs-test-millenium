@@ -2,6 +2,9 @@ package pages.booking;
 
 import blocks.booking.BookingDetail;
 import blocks.booking.SuccessMessageBlock;
+import data.DateTime;
+import data.LocationsData;
+import data.ServicesData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
@@ -30,17 +33,17 @@ public class Confirmation extends BasePage {
 
     }
 
-    public void checkingSuccessBooking(String location, String service, String therapist, String duration, String date) {
+    public void checkingSuccessBooking(LocationsData locationsData, ServicesData servicesData, String therapist, DateTime dateTime) {
         waitUntilElementAppeared(successMessageBlock);
         softAssert.assertEquals(successMessageBlock.getSuccessHeading().getText(), "CONGRATULATIONS!");
         softAssert.assertEquals(successMessageBlock.getAddToCalendarBut().getText(), "ADD TO CALENDAR");
         softAssert.assertEquals(successMessageBlock.getBookAnotherAppBut().getText(), "BOOK ANOTHER APPOINTMENT");
         softAssert.assertEquals(successMessageBlock.getDownloadFormBut().getText(), "DOWNLOAD INTAKE FORM");
-        softAssert.assertTrue(bookingDetail.containsLocation(location), "Location " + location + " not found");
-        softAssert.assertTrue(bookingDetail.containsService(service), "Service " + service + " not found");
+        softAssert.assertTrue(bookingDetail.containsLocation(locationsData.getLocationName()), "Location " + locationsData.getLocationName() + " not found");
+        softAssert.assertTrue(bookingDetail.containsService(servicesData.getServiceName()), "Service " + servicesData.getServiceName() + " not found");
         softAssert.assertTrue(bookingDetail.containsTherapist(therapist), "Therapist " + therapist + " not found");
-        softAssert.assertTrue(bookingDetail.containsDuration(duration), "Duration " + duration + " not found");
-        softAssert.assertTrue(bookingDetail.containsDate(date), "Date " + date + " not found");
+        softAssert.assertTrue(bookingDetail.containsDuration(servicesData.getDuration()), "Duration " + servicesData.getDuration() + " not found");
+        softAssert.assertTrue(bookingDetail.containsDate(dateTime.getDate()), "Date " + dateTime.getDate() + " not found");
         softAssert.assertAll();
     }
 

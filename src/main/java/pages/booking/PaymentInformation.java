@@ -3,6 +3,7 @@ package pages.booking;
 import blocks.booking.ContactInformationForm;
 import blocks.booking.PasswordForm;
 import blocks.booking.PaymentInformationForm;
+import blocks.booking.SuccessMessageBlock;
 import data.CreditCards;
 import data.Users;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +24,7 @@ public class PaymentInformation extends BasePage {
     private ContactInformationForm contactInformationForm;
     private PaymentInformationForm paymentInformationForm;
     private PasswordForm passwordForm;
+    private SuccessMessageBlock successMessageBlock;
 
     @Override
     public void open() {
@@ -43,6 +45,7 @@ public class PaymentInformation extends BasePage {
             fillPasswordField(users);
         cancellationPolicyCheckBox.click();
         confirmBockingBut.click();
+        waitUntilElementAppeared(successMessageBlock);
     }
 
     public void fillPaymentInformationForMember() throws InterruptedException {

@@ -1,5 +1,4 @@
-import data.CreditCards;
-import data.Users;
+import data.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -45,29 +44,22 @@ public class IntroBooking extends TestBase {
 
     @Test()
     public void testBookingAsFistTimeVisitor() throws InterruptedException {
-        String locationName = "Cherry";
-        String serviceName = "Hot Stone Massage";
-        String duration = "1 hour";
-        String date = "Sep 19";
         home.open();
         massageServicePage.clickMassageService();
-        createAccountPage.chooseLocation(locationName);
-        chooseServices.chooseServiceAsFirstVisitor(serviceName);
-        String therapistName = prefferedDateTime.chooseTherapistAndDateTime("Any Employee", date, "03:00");
+        createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
+        chooseServices.chooseServiceAsFirstVisitor(ServicesData.INTROHS50);
+        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER30_10AM);
         paymentInformation.fillPaymentInformation(Users.ALLEN, CreditCards.VISA_STRIPE, false);
-        confirmation.checkingSuccessBooking(locationName, serviceName, therapistName, duration, date);
+        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.INTROHS50, therapistName, DateTime.SEPTEMBER30_10AM);
     }
 
     @Test()
     public void testBookingAsFistTimeVisitorWithExistEmail() throws InterruptedException {
-        String locationName = "Cherry";
-        String serviceName = "Hot Stone Massage";
-        String date = "Sep 19";
         home.open();
         massageServicePage.clickMassageService();
-        createAccountPage.chooseLocation(locationName);
-        chooseServices.chooseServiceAsFirstVisitor(serviceName);
-        prefferedDateTime.chooseTherapistAndDateTime("Any Employee", date, "03:00");
+        createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
+        chooseServices.chooseServiceAsFirstVisitor(ServicesData.INTROHS50);
+        prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER21_12PM);
         paymentInformation.fillPaymentInformation(Users.ALLEN, CreditCards.VISA_STRIPE, false);
         confirmation.checkingErrorBooking();
     }

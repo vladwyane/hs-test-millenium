@@ -1,16 +1,11 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import data.CreditCards;
+import data.LocationsData;
 import data.Users;
 import data.UsersData;
 import org.testng.annotations.*;
 import pages.*;
-import pages.booking.ChooseServices;
-import pages.booking.Confirmation;
-import pages.booking.PaymentInformation;
-import pages.booking.PrefferedDateTime;
 import testBase.TestBase;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -74,7 +69,7 @@ public class Registration extends TestBase{
     @Test()
     public void testSuccessRegistrationFromSignInPage() {
         signInPage.openCreateAccPageFromSignIn();
-        createAccountPage.registration(Users.DWYANE);
+        createAccountPage.registrationWithLocation(Users.DWYANE, LocationsData.CHERRY_HILL);
         createAccountPage.checkingSuccessOfRegistration();
     }
 

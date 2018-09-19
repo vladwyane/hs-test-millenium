@@ -3,8 +3,7 @@ package pages;
 import blocks.CreateAccountForm;
 import blocks.Header;
 import blocks.popUps.LocationPopup;
-import data.Users;
-import data.UsersData;
+import data.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import pages.account.Dashboard;
@@ -32,14 +31,14 @@ public class CreateAccountPage extends BasePage {
     @FindBy(id = "modal-header-id")
     private HtmlElement titleInfoPopup;
 
-    public void fillRegistrationFieldsFromJson (UsersData users) {
+    public void fillRegistrationFieldsFromJson (UsersData users, LocationsData locationsData) {
         type(createAccountForm.getFirstNameField(), users.getFirstName());
         type(createAccountForm.getLastNameField(), users.getLastName());
         type(createAccountForm.getPasswordField(), users.getPassword());
         type(createAccountForm.getConfPasswordField(), users.getConfPassword());
         type(createAccountForm.getEmailField(), users.getEmail());
         type(createAccountForm.getPhoneField(), users.getPhone());
-        fillLocationField(users.getLocation());
+        fillLocationField(locationsData);
     }
 
     public void fillRegistrationFields(Users users) {
@@ -49,20 +48,29 @@ public class CreateAccountPage extends BasePage {
         type(createAccountForm.getConfPasswordField(), users.getConfPassword());
         type(createAccountForm.getEmailField(), users.getEmail());
         type(createAccountForm.getPhoneField(), users.getPhone());
-        fillLocationField(users.getLocation());
     }
 
-    public void fillLocationField(String nameLocation) {
+    public void fillRegistrationFieldsWithLocation(Users users, LocationsData locationsData) {
+        type(createAccountForm.getFirstNameField(), users.getFirstName());
+        type(createAccountForm.getLastNameField(), users.getLastName());
+        type(createAccountForm.getPasswordField(), users.getNewPassword());
+        type(createAccountForm.getConfPasswordField(), users.getConfPassword());
+        type(createAccountForm.getEmailField(), users.getEmail());
+        type(createAccountForm.getPhoneField(), users.getPhone());
+        fillLocationField(locationsData);
+    }
+
+    public void fillLocationField(LocationsData locationsData) {
         createAccountForm.getLocationField().click();
-        chooseLocation(nameLocation);
+        chooseLocation(locationsData);
     }
 
-    public void chooseLocation(String nameLocation) {
+    public void chooseLocation(LocationsData locationsData) {
         locationPopup.clickFindLocationLink();
         for (int i = 0; i < locationPopup.getTitlesLocationList().size(); i++) {
             if(isElementInvisible(locationPopup.getTitlesLocationList().get(i)) == true)
                 locationPopup.clickRightArrowOfCarousel();
-            if(locationPopup.getTitlesLocationList().get(i).getText().contains(nameLocation.toUpperCase())) {
+            if(locationPopup.getTitlesLocationList().get(i).getText().contains(locationsData.getLocationName().toUpperCase())) {
                 locationPopup.getSelectButLocationList().get(i).click();
                 return;
             }
@@ -70,15 +78,21 @@ public class CreateAccountPage extends BasePage {
         locationPopup.getSelectButLocationList().get(locationPopup.getSelectButLocationList().size() - 1).click();
     }
 
-    public Dashboard registrationFromJson (UsersData users) {
+    public Dashboard registrationFromJson (UsersData users, LocationsData locationsData) {
         openRegistrationPage();
-        fillRegistrationFieldsFromJson(users);
+        fillRegistrationFieldsFromJson(users, locationsData);
         createAccountForm.clickCreateAccBut();
         return new Dashboard(driver);
     }
 
     public Dashboard registration (Users users) {
         fillRegistrationFields(users);
+        createAccountForm.clickCreateAccBut();
+        return new Dashboard(driver);
+    }
+
+    public Dashboard registrationWithLocation (Users users, LocationsData locationsData) {
+        fillRegistrationFieldsWithLocation(users, locationsData);
         createAccountForm.clickCreateAccBut();
         return new Dashboard(driver);
     }

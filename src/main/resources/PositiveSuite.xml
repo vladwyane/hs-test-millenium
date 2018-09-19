@@ -18,8 +18,8 @@
                 <methods>
                     <include name="testBookingAsGuest"></include>
                     <include name="testBookingAsMember"></include>
-                    <include name="testBookingWithRegistration"></include>
                     <include name="testSuccessEmailBooking"></include>
+                    <include name="testBookingWithRegistration"></include>
                 </methods>
             </class>
             <class name="LMDBooking" >
@@ -36,32 +36,6 @@
                     <include name="testSuccessUpdateContactInfo"></include>
                     <include name="testSuccessChangePassword"></include>
                     <include name="testSuccessEmailChangePassword"></include>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test name="NegativeTests">
-        <classes>
-            <class name="Registration" >
-                <methods>
-                    <include name="testErrorRegistrationAllFieldsBlank"></include>
-                    <include name="testErrorRegistrationNotMatchPassword"></include>
-                    <include name="testErrorRegistrationExistEmail"></include>
-                </methods>
-            </class>
-            <class name="IntroBooking" >
-                <methods>
-                    <include name="testBookingAsFistTimeVisitorWithExistEmail"></include>
-                </methods>
-            </class>
-            <class name="Booking" >
-                <methods>
-                    <include name="testBookingAsGuestWithInvalidCard"></include>
-                </methods>
-            </class>
-            <class name="LMDBooking" >
-                <methods>
-                    <include name="testLMDBookingNothingFound"></include>
                 </methods>
             </class>
         </classes>

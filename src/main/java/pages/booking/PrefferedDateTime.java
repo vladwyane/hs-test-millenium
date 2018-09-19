@@ -3,6 +3,8 @@ package pages.booking;
 import blocks.booking.AppointmentDate;
 import blocks.booking.TherapistPreferences;
 import blocks.booking.TherapistSchedule;
+import data.DateTime;
+import data.Therapist;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
@@ -32,24 +34,22 @@ public class PrefferedDateTime extends BasePage {
     @FindBy(css= "a.continue")
     private Button continueBut;
 
-    public String chooseTherapistAndDateTime(String therapistSpecific, String date, String time) {
+    public String chooseTherapistAndDateTime(Therapist therapist, DateTime dateTime) {
         waitUntilElementWillBeClickable(therapistPreferences.getListTherapistPreferences().get(0));
-        therapistPreferences.chooseTherapistPreferences(therapistSpecific);
-        chooseAppointmentDate(date);
-        String therapistName = chooseAppointmentTime(time);
+        therapistPreferences.chooseTherapistPreferences(therapist.getTherapistSpecific());
+        chooseAppointmentDate(dateTime);
+        String therapistName = chooseAppointmentTime(dateTime);
         waitUntilTextInElementAppear(therapistPreferences, "waiting");
         continueBut.click();
         return therapistName;
     }
 
-    public void chooseAppointmentDate(String date) {
+    public void chooseAppointmentDate(DateTime dateTime) {
         List<HtmlElement> listDate = appointmentDate.getListAppointmentDate();
         for (int i = 0; i < listDate.size() - 30; i++) {
             if(isElementInvisible(listDate.get(i)) == true)
                 appointmentDate.clickNextArrow();
-            boolean res = isElementContainsAttributeValue(listDate.get(i), "class", "disabled");
-            String ter = listDate.get(i).getText();
-            if(listDate.get(i).getText().contains(date) && isElementContainsAttributeValue(listDate.get(i), "class", "disabled") == false) {
+            if(listDate.get(i).getText().contains(dateTime.getDate()) && isElementContainsAttributeValue(listDate.get(i), "class", "disabled") == false) {
                 listDate.get(i).click();
                 return;
             }
@@ -65,10 +65,10 @@ public class PrefferedDateTime extends BasePage {
         listDate.get(1).click();
     }
 
-    public String chooseAppointmentTime(String time) {
+    public String chooseAppointmentTime(DateTime dateTime) {
         List<HtmlElement> listTime = therapistSchedule.getListTimeTherapist();
         for (int i = 0; i < listTime.size(); i++) {
-            if(listTime.get(i).getText().contains(time) && isElementContainsAttributeValue(listTime.get(i), "class", "disabled") == false) {
+            if(listTime.get(i).getText().contains(dateTime.getDate()) && isElementContainsAttributeValue(listTime.get(i), "class", "disabled") == false) {
                 listTime.get(i).click();
                 return therapistSchedule.getTherapistNameActive().getText();
             }
