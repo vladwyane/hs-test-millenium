@@ -1,4 +1,5 @@
 import data.*;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,6 +13,8 @@ import testBase.TestBase;
 /**
  * Created by bigdrop on 9/18/2018.
  */
+@Epic("Regression Tests")
+@Feature("IntroBooking Tests")
 public class IntroBooking extends TestBase {
 
     private Home home;
@@ -43,6 +46,8 @@ public class IntroBooking extends TestBase {
     }
 
     @Test()
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Positive test of booking first time visitor")
     public void testBookingAsFistTimeVisitor() throws InterruptedException {
         home.open();
         massageServicePage.clickMassageService();
@@ -54,6 +59,8 @@ public class IntroBooking extends TestBase {
     }
 
     @Test()
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Negative test of booking first time visitor with exist email")
     public void testBookingAsFistTimeVisitorWithExistEmail() throws InterruptedException {
         home.open();
         massageServicePage.clickMassageService();

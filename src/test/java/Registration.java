@@ -3,6 +3,7 @@ import com.google.gson.reflect.TypeToken;
 import data.LocationsData;
 import data.Users;
 import data.UsersData;
+import io.qameta.allure.*;
 import org.testng.annotations.*;
 import pages.*;
 import testBase.TestBase;
@@ -15,6 +16,8 @@ import java.util.stream.Collectors;
 /**
  * Created by bigdrop on 8/31/2018.
  */
+@Epic("Regression Tests")
+@Feature("Registration Tests")
 public class Registration extends TestBase{
 
     private Home home;
@@ -59,6 +62,8 @@ public class Registration extends TestBase{
     }
 
     @Test()
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Positive test of registration from sign up page without chosen location")
     public void testSuccessRegistrationFromSignUpPage() {
         home.open();
         createAccountPage.openRegistrationPage();
@@ -67,6 +72,8 @@ public class Registration extends TestBase{
     }
 
     @Test()
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Positive test of registration from sign in page with chosen location")
     public void testSuccessRegistrationFromSignInPage() {
         signInPage.openCreateAccPageFromSignIn();
         createAccountPage.registrationWithLocation(Users.DWYANE, LocationsData.CHERRY_HILL);
@@ -74,6 +81,8 @@ public class Registration extends TestBase{
     }
 
     @Test()
+    @Severity(SeverityLevel.MINOR)
+    @Story("Negative test of registration with all blank fields")
     public void testErrorRegistrationAllFieldsBlank() {
         createAccountPage.open();
         createAccountPage.clickCreateAccButWithEmptyFields();
@@ -81,6 +90,8 @@ public class Registration extends TestBase{
     }
 
     @Test()
+    @Severity(SeverityLevel.MINOR)
+    @Story("Negative test of registration with not match password")
     public void testErrorRegistrationNotMatchPassword() {
         createAccountPage.open();
         createAccountPage.registration(Users.INVALID);
@@ -88,6 +99,8 @@ public class Registration extends TestBase{
     }
 
     @Test()
+    @Severity(SeverityLevel.MINOR)
+    @Story("Negative test of registration with exist email")
     public void testErrorRegistrationExistEmail() {
         signInPage.openCreateAccPageFromSignIn();
         createAccountPage.open();
@@ -96,6 +109,8 @@ public class Registration extends TestBase{
     }
 
     @Test()
+    @Severity(SeverityLevel.MINOR)
+    @Story("Test of email with registration letter")
     public void testSuccessEmailRegistration()  {
         googleMail.signIntoGoogleMail(Users.VLADYSLAV);
         googleMail.checkingEmailRegistration();

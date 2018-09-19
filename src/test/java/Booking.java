@@ -1,4 +1,5 @@
 import data.*;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,6 +14,8 @@ import testBase.TestBase;
 /**
  * Created by bigdrop on 9/14/2018.
  */
+@Epic("Regression Tests")
+@Feature("Bocking Tests")
 public class Booking extends TestBase {
 
     private Home home;
@@ -50,6 +53,8 @@ public class Booking extends TestBase {
     }
 
     @Test()
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Positive test of booking with creating account")
     public void testBookingWithRegistration() throws InterruptedException {
         home.open();
         locations.clickLocationItemFromMainNav();
@@ -65,6 +70,8 @@ public class Booking extends TestBase {
     }
 
     @Test()
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Positive test of booking as guest")
     public void testBookingAsGuest() throws InterruptedException {
         home.open();
         massageServicePage.clickMassageService();
@@ -76,6 +83,8 @@ public class Booking extends TestBase {
     }
 
     @Test()
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Positive test of booking as member")
     public void testBookingAsMember() throws InterruptedException {
         home.open();
         locations.clickLocationItemFromMainNav();
@@ -88,6 +97,8 @@ public class Booking extends TestBase {
     }
 
     @Test()
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Negative test of booking with invalid card")
     public void testBookingAsGuestWithInvalidCard() throws InterruptedException {
         home.open();
         facialServicePage.clickFacialService();
@@ -99,6 +110,8 @@ public class Booking extends TestBase {
     }
 
     @Test()
+    @Severity(SeverityLevel.MINOR)
+    @Story("Test of email with success booking")
     public void testSuccessEmailBooking() throws InterruptedException {
         googleMail.signIntoGoogleMail(Users.VLADYSLAV);
         googleMail.checkingEmailBooking();
