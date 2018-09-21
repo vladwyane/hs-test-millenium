@@ -29,7 +29,6 @@ public class MassageServicePage extends BasePage {
     @FindBy(xpath = "//a[@aria-describedby = 'class-massage']")
     private Button bookMassageBut;
 
-
     public void clickMassageService() {
         waitUntilTextInElementAppear(header, "Massage");
         header.clickMenuItem("Massage");

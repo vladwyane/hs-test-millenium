@@ -38,7 +38,7 @@ public class GoogleMail extends BasePage {
     @FindBy(id = "passwordNext")
     private HtmlElement nextPassButton;
 
-    @FindBys( {@FindBy(css = "div span b")} )
+    @FindBys( {@FindBy(css = ".bog")} )
     public List<HtmlElement> listTitleLetters;
 
     public void signIntoGoogleMail(Users users) {
@@ -49,7 +49,6 @@ public class GoogleMail extends BasePage {
         waitUntilElementAppeared(nextPassButton);
         type(passwordField, users.getNewPassword());
         nextPassButton.click();
-        int size = listTitleLetters.size();
         waitUntilElementAppeared(listTitleLetters.get(0));
     }
 

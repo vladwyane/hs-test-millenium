@@ -26,7 +26,6 @@ public class LastDeals extends HtmlElement {
     @FindBy(css = ".nothing-found")
     private HtmlElement nothingFoundSection;
 
-
     public WebElement getSliderRangeFirstBullet() {
         return sliderRangeFirstBullet;
     }

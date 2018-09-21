@@ -18,6 +18,10 @@ public enum Users {
             "322 NY 32th Street", "New York", "New York", "1001"),
     MEMBER("Vladyslav", "Chesalov", "vladyslav.chesalov+3@bigdropinc.com", "JR6GMs4ywnew", "JR6GMs4ywG", "JR6GMs4ywG", "3325546657",
             "322 NY 32th Street", "Miami", "Florida", "33101"),
+    MILLENIUM("cosdk", "CentralOffice", "vladyslav.chesalov@bigdropinc.com", "JR6GMs4ywnew", "cosdk", "cosdk", "3325546657",
+            "322 NY 32th Street", "Miami", "Florida", "33101"),
+    ADMIN("Name", "Surname", "superAdmin@hs.com", "JR6GMs4ywnew", "A1234567", "A1234567", "3325546657",
+            "322 NY 32th Street", "Miami", "Florida", "33101"),
     INVALID("Invalid", "Test", "vladyslav.chesalov+8@bigdropinc.com", "JR6GMs4ywG", "JR6GMs4yw", "JR6GMs4ywGnew", "9087654321",
             "3275 NW 24th Street Rd", "Miami", "Florida", "33101");
 

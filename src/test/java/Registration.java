@@ -4,6 +4,7 @@ import data.LocationsData;
 import data.Users;
 import data.UsersData;
 import io.qameta.allure.*;
+import org.testng.TestListenerAdapter;
 import org.testng.annotations.*;
 import pages.*;
 import testBase.TestBase;

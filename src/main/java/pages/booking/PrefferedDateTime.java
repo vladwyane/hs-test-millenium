@@ -68,7 +68,7 @@ public class PrefferedDateTime extends BasePage {
     public String chooseAppointmentTime(DateTime dateTime) {
         List<HtmlElement> listTime = therapistSchedule.getListTimeTherapist();
         for (int i = 0; i < listTime.size(); i++) {
-            if(listTime.get(i).getText().contains(dateTime.getDate()) && isElementContainsAttributeValue(listTime.get(i), "class", "disabled") == false) {
+            if(listTime.get(i).getText().contains(dateTime.getTime()) && isElementContainsAttributeValue(listTime.get(i), "class", "disabled") == false) {
                 listTime.get(i).click();
                 return therapistSchedule.getTherapistNameActive().getText();
             }
