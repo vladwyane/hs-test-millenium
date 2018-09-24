@@ -63,10 +63,10 @@ public class ServicesPOS extends BasePage {
     private CheckBox bookableCheckbox;
 
     @FindBy(id = "ctl00_Main_cntStartHr_txtSpinner")
-    private TextInput hoursDurField;
+    private HtmlElement hoursDurField;
 
     @FindBy(id = "ctl00_Main_cntStartMin_txtSpinner")
-    private TextInput minuteDurField;
+    private HtmlElement minuteDurField;
 
 
     public String returnHoursFromDuration(String duration) {
@@ -103,8 +103,8 @@ public class ServicesPOS extends BasePage {
         fillingServiceInfo(servicesData);
         facialFormulaTypes.select();
         appointLink.click();
-        type(hoursDurField, returnHoursFromDuration(servicesData.getDuration()));
-        type(minuteDurField, returnMinuteFromDuration(servicesData.getDuration()));
+        changeAttributeValueWithJS(hoursDurField.getAttribute("id"), "value", returnHoursFromDuration(servicesData.getDuration()));
+        changeAttributeValueWithJS(minuteDurField.getAttribute("id"), "value", returnMinuteFromDuration(servicesData.getDuration()));
         bookableCheckbox.select();
         saveServBut.click();
         waitUntilTextInElementAppear(saveServBut, "waiting");

@@ -11,7 +11,7 @@ public enum ServicesData {
     NM50 ("Massage", "1 hour", "MASSAGE:NONMEMBER", "NM50", "Massage", "63"),
     NM80 ("Massage", "1 hour 30 min", "MASSAGE:NONMEMBER", "NM80", "Massage", "86"),
     NMTFC ("Teen Facial Clarity", "1 hour", "FACIALS - CLARITY:NONMEMBER", "NMTFC", "Facial", "81"),
-    NCHS80("Chesalov Servise", "1 hour 30 min", "FACIALS - CLARITY:NONMEMBER", "NCHS80", "Facial", "99"),
+    NCHS80("Men's Facial", "1 hour 30 min", "FACIALS - CLARITY:NONMEMBER", "NCHS80", "Facial", "99"),
     INTROHS50 ("Hot Stone Massage", "1 hour", "MASSAGE:NONMEMBER", "INTROHS50", "Massage", "102");
 
     public String getServiceName() {

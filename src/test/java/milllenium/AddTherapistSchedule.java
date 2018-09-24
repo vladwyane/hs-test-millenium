@@ -28,7 +28,7 @@ public class AddTherapistSchedule extends TestBase {
             scheduleEditor = new ScheduleEditor(app.getDriver());
         }
 
-        @Test(priority = 2)
+        @Test(priority = 3)
         public void testCreateTherapistScheduleOnDay() throws InterruptedException, ParseException {
         logInHome.logIn(Users.MILLENIUM);
         dashboard.moveToScheduleEditor();

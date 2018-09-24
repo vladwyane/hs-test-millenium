@@ -29,18 +29,25 @@ public class CreateQueueToPOS extends TestBase {
         app.delleteAllCookies();
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void testQueueTherapistSchedules() {
         adminLogIn.logInToAdmin(Users.ADMIN);
         millenniumPOS.open();
         millenniumPOS.makeQueueToPOS("therapist-schedules");
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void testQueueEmpAndTherapistServices() {
         adminLogIn.logInToAdmin(Users.ADMIN);
         millenniumPOS.open();
         millenniumPOS.makeQueueToPOS("therapist");
         millenniumPOS.makeQueueToPOS("therapist-service");
+    }
+
+    @Test(priority = 4)
+    public void testQueueServices() {
+        adminLogIn.logInToAdmin(Users.ADMIN);
+        millenniumPOS.open();
+        millenniumPOS.makeQueueToPOS("service");
     }
 }

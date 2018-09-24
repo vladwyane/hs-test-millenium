@@ -100,4 +100,9 @@ public abstract class BasePage {
         else return false;
     }
 
+    protected void changeAttributeValueWithJS(String elementID, String attribute, String value) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.getElementById('" + elementID + "').setAttribute('" + attribute + "', '" + value + "')");
+    }
+
 }

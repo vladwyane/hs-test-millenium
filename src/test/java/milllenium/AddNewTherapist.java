@@ -25,7 +25,7 @@ public class AddNewTherapist extends TestBase {
         dashboard = new Dashboard(app.getDriver());
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void testCreateTherapist() {
         logInHome.logIn(Users.MILLENIUM);
         dashboard.moveToEmployee();
