@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
-import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import utils.ConfigProperties;
 
 import java.util.List;
@@ -41,7 +40,7 @@ public class Locations extends BasePage{
     public List<Button> listButAvailableLocation;
 
     public Locations chooseLocationFromLocationPage(LocationsData locationsData) {
-        type(locationsNav.getSearchField(), locationsData.getLocationName());
+        type(locationsNav.getSearchField(), locationsData.getShortLocationName());
         locationsNav.getListLocationFromAutocom().get(0).click();
         locationsNav.clickFindStoreBut();
         listButAvailableLocation.get(0).click();
@@ -49,7 +48,7 @@ public class Locations extends BasePage{
     }
 
     public Locations moveToLocationDetail(LocationsData locationsData) {
-        type(locationsNav.getSearchField(), locationsData.getLocationName());
+        type(locationsNav.getSearchField(), locationsData.getShortLocationName());
         locationsNav.getListLocationFromAutocom().get(0).click();
         locationsNav.clickFindStoreBut();
         listButDetailLocation.get(0).click();
@@ -67,7 +66,7 @@ public class Locations extends BasePage{
         for (int i = 0; i < locationPopup.getTitlesLocationList().size(); i++) {
             if(isElementInvisible(locationPopup.getTitlesLocationList().get(i)) == true)
                 locationPopup.clickRightArrowOfCarousel();
-            if(locationPopup.getTitlesLocationList().get(i).getText().contains(locationsData.getLocationName().toUpperCase())) {
+            if(locationPopup.getTitlesLocationList().get(i).getText().contains(locationsData.getShortLocationName().toUpperCase())) {
                 locationPopup.getSelectButLocationList().get(i).click();
                 return;
             }

@@ -1,6 +1,8 @@
 package milllenium;
 
 import data.Users;
+import org.aspectj.lang.annotation.After;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.admin.AdminLogIn;
@@ -22,10 +24,23 @@ public class CreateQueueToPOS extends TestBase {
         millenniumPOS = new MillenniumPOS(app.getDriver());
     }
 
-    @Test()
+    @AfterMethod
+    public void clearAllCookies() {
+        app.delleteAllCookies();
+    }
+
+    @Test(priority = 3)
     public void testQueueTherapistSchedules() {
         adminLogIn.logInToAdmin(Users.ADMIN);
         millenniumPOS.open();
         millenniumPOS.makeQueueToPOS("therapist-schedules");
+    }
+
+    @Test(priority = 3)
+    public void testQueueEmpAndTherapistServices() {
+        adminLogIn.logInToAdmin(Users.ADMIN);
+        millenniumPOS.open();
+        millenniumPOS.makeQueueToPOS("therapist");
+        millenniumPOS.makeQueueToPOS("therapist-service");
     }
 }

@@ -5,16 +5,23 @@ package data;
  */
 public enum LocationsData {
 
-    CHERRY_HILL ("Cherry"),
-    DE_BEAR("Bear");
+    CHERRY_HILL ("Cherry", "NJ Cherry Hill - Hand and Stone"),
+    DE_BEAR("Bear", "DE Bear - Hand and Stone");
 
-    public String getLocationName() {
-        return locationName;
+    public String getShortLocationName() {
+        return shortLocationName;
     }
 
-    private String locationName;
+    public String getLocationNameForMillenium() {
+        return locationNameForMillenium;
+    }
 
-    LocationsData(String locationName) {
-        this.locationName = locationName;
+    private String shortLocationName;
+
+    private String locationNameForMillenium;
+
+    LocationsData(String shortLocationName, String locationNameForMillenium) {
+        this.shortLocationName = shortLocationName;
+        this.locationNameForMillenium = locationNameForMillenium;
     }
 }

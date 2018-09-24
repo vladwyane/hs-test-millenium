@@ -1,5 +1,7 @@
 package pages.millenium;
 
+import data.LocationsData;
+import data.Therapist;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
@@ -56,16 +58,36 @@ public class ScheduleEditor extends BasePage {
     private Select selectActualActivity;
 
 
-    public void addTherapistSchedulBySelectValue(String valueLocation, String date, String valueEmployee, String inTime, String outTime) {
+    public void addTherapistSchedule(LocationsData locationsData, Therapist therapist, String date, String inTime, String outTime) {
         newSchedulBut.click();
-        selectLocation.selectByValue(valueLocation);
+        selectLocation.selectByVisibleText(locationsData.getLocationNameForMillenium());
         type(calDateField, date);
-        selectEmployee.selectByValue(valueEmployee);
+        selectEmployee.selectByVisibleText(therapist.getTherapistCode().toUpperCase() + ": " + therapist.getTherapistLastName() + ", " + therapist.getTherapistFirstName());
         type(inTimeField, inTime);
         type(outTimeField, outTime);
         selectScheduleActivity.selectByVisibleText("Work Time");
         selectActualActivity.selectByVisibleText("Work Time");
         saveBut.click();
+    }
+
+    public void addScheduleForTherapistOnWeek(LocationsData locationsData, Therapist therapist, String startDate, String inTime, String outTime) throws ParseException {
+        for (int i = 0; i < 7; i++) {
+            newSchedulBut.click();
+            selectLocation.selectByVisibleText(locationsData.getLocationNameForMillenium());
+            SimpleDateFormat sdf = new SimpleDateFormat("M/dd/yyyy");
+            Calendar c = Calendar.getInstance();
+            c.setTime(sdf.parse(startDate));
+            c.add(Calendar.DATE, i);  // number of days to add
+            String date = sdf.format(c.getTime());  // dt is now the new date
+            type(calDateField, date);
+            selectEmployee.selectByVisibleText(therapist.getTherapistCode().toUpperCase() + ": " + therapist.getTherapistLastName() + ", " + therapist.getTherapistFirstName());
+            type(inTimeField, inTime);
+            type(outTimeField, outTime);
+            selectScheduleActivity.selectByVisibleText("Work Time");
+            selectActualActivity.selectByVisibleText("Work Time");
+            saveBut.click();
+        }
+
     }
 
     public void addScheduleForDwyane(String date, String inTime, String outTime) {

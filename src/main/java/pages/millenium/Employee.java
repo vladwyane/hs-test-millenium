@@ -1,7 +1,10 @@
 package pages.millenium;
 
+import blocks.Header;
+import data.Therapist;
 import data.Users;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import pages.BasePage;
@@ -18,6 +21,8 @@ public class Employee extends BasePage {
     public Employee(WebDriver driver) {
         super(driver);
     }
+
+    Header header;
 
     @Override
     public void open() {
@@ -42,14 +47,9 @@ public class Employee extends BasePage {
     @FindBy(id = "ctl00_Main_txtLastName")
     private TextInput lastNameField;
 
-    @FindBy(id = "ctl00_Main_chkShowAppointment")
-    private CheckBox chkShowAppointment;
-
-    @FindBy(id = "ctl00_Main_chkShowTips")
-    private CheckBox chkShowTips;
-
-    @FindBy(id = "ctl00_Main_chkShowSchedules")
-    private CheckBox chkShowTipschkShowSchedules;
+    @Name("ArrayList of show setting checkbox")
+    @FindBys( {@FindBy(css = "#Table6 input")} )
+    private List<CheckBox> listShowSettingsCheckBox;
 
     @FindBy(id = "ctl00_Main_rblSex_0")
     private Radio radioButSex;
@@ -68,13 +68,21 @@ public class Employee extends BasePage {
 
     @Name("ArrayList of service checkbox")
     @FindBys( {@FindBy(xpath = "//input[contains(@id, 'Services')]")} )
-    private List<HtmlElement> listServiceCheckBox;
+    private List<CheckBox> listServiceCheckBox;
 
     @Name("ArrayList of header service table")
     @FindBys( {@FindBy(css = ".headerrow td")} )
     private List<HtmlElement> listHeaderTableService;
 
-    public void getCellFromAppTable(String headingColumn) {
+    @Name("ArrayList of footer pagination item")
+    @FindBys( {@FindBy(css = ".footerrow2 a")} )
+    private List<HtmlElement> listFooterPaginItem;
+
+    @Name("ArrayList of all td in the service table")
+    @FindBys( {@FindBy(css = "#Table20 td")} )
+    private List<HtmlElement> listAllTdInTheServiceTable;
+
+    public int getNumColumnFormTable(String headingColumn) {
         int indexColumn = 0;
         for (int i = 0; i < listHeaderTableService.size(); i++) {
             if(listHeaderTableService.get(i).getText().contains(headingColumn)){
@@ -82,31 +90,70 @@ public class Employee extends BasePage {
                 break;
             }
         }
-        for (int i = indexColumn; i < listServiceCheckBox.size(); i += (listServiceCheckBox.size() / listHeaderTableService.size())) {
-            listServiceCheckBox.get(i).click();
+        return indexColumn;
+    }
+
+    public void chooseAllService(String headingColumn) {
+        appServiceLink.click();
+        editServBut.click();
+        int indexColumn = getNumColumnFormTable(headingColumn);
+        int i = 0;
+        do {
+            for (int j = indexColumn; j < listServiceCheckBox.size(); j += (listServiceCheckBox.size() / listHeaderTableService.size())) {
+                if( listServiceCheckBox.get(j).isSelected() == false)
+                    listServiceCheckBox.get(j).select();
+            }
+            if(listFooterPaginItem.get(listFooterPaginItem.size() - 1).getText().equals("...") == false) {
+                break;
+            }
+            if(listFooterPaginItem.get(i).getText().equals("...")) {
+                listFooterPaginItem.get(i).click();
+                i = 1;
+            }
+            else {
+                listFooterPaginItem.get(i).click();
+                i++;
+            }
+        } while (i < 1);
+        saveEmpBut.click();
+        waitUntilElementAppeared(header);
+    }
+
+    public void chooseLocationByValue(String value) {
+        selectLocationAvailable.selectByValue(value);
+        addLocationBut.click();
+    }
+
+    public void fillingTherapistContactInfo(Therapist therapist) {
+        type(codeField, therapist.getTherapistCode().toUpperCase());
+        type(firstNameField, therapist.getTherapistFirstName());
+        type(lastNameField, therapist.getTherapistLastName());
+    }
+
+    public void chooseGender(Therapist therapist) {
+        if(therapist.getTherapistSpecific().equals("Any Male"))
+            radioButSex.selectByValue("1");
+        else radioButSex.selectByValue("2");
+    }
+
+    public void selectAllShowSettingCheckBox() {
+        for (int i = 0; i < listShowSettingsCheckBox.size(); i++) {
+            if(listShowSettingsCheckBox.get(i).isSelected() == false)
+                listShowSettingsCheckBox.get(i).select();
         }
     }
 
-
-    public void createNewMaleTherapist(Users users) {
+    public void createNewMaleTherapist(Therapist therapist) {
         newEmployeeBut.click();
-        selectLocationAvailable.selectByValue("2");
-        addLocationBut.click();
-        type(codeField, users.getFirstName().toUpperCase());
-        type(firstNameField, users.getFirstName());
-        type(lastNameField, users.getLastName());
+        chooseLocationByValue("2");
+        fillingTherapistContactInfo(therapist);
         checkMassTher.select();
-        chkShowAppointment.select();
-        chkShowTips.select();
-        chkShowTipschkShowSchedules.select();
-        radioButSex.selectByValue("1");
+        selectAllShowSettingCheckBox();
+        chooseGender(therapist);
         saveEmpBut.click();
-        appServiceLink.click();
-        editServBut.click();
-        getCellFromAppTable("Allowed?");
     }
 
-
-
-
+    public void addingAllServiceForTherapist(String headingColumn) {
+        chooseAllService(headingColumn);
+    }
 }

@@ -1,35 +1,34 @@
 package milllenium;
 
-import data.Therapist;
+import data.ServicesData;
 import data.Users;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.millenium.Dashboard;
-import pages.millenium.Employee;
 import pages.millenium.LogInHome;
+import pages.millenium.ServicesPOS;
 import testBase.TestBase;
 
 /**
- * Created by bigdrop on 9/21/2018.
+ * Created by bigdrop on 9/24/2018.
  */
-public class AddNewTherapist extends TestBase {
+public class CreateNewService extends TestBase {
 
     private LogInHome logInHome;
-    private Employee employee;
+    private ServicesPOS servicesPOS;
     private Dashboard dashboard;
 
     @BeforeMethod
     public void initPageObjects() {
         logInHome = new LogInHome(app.getDriver());
-        employee = new Employee(app.getDriver());
+        servicesPOS = new ServicesPOS(app.getDriver());
         dashboard = new Dashboard(app.getDriver());
     }
 
     @Test(priority = 1)
-    public void testCreateTherapist() {
+    public void testCreateService() {
         logInHome.logIn(Users.MILLENIUM);
-        dashboard.moveToEmployee();
-        employee.createNewMaleTherapist(Therapist.VLADYSLAV);
-        employee.addingAllServiceForTherapist("Allowed?");
+        dashboard.moveToServices();
+        servicesPOS.createNewService(ServicesData.NCHS80);
     }
 }

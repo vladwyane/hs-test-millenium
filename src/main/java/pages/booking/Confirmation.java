@@ -39,7 +39,7 @@ public class Confirmation extends BasePage {
         softAssert.assertEquals(successMessageBlock.getAddToCalendarBut().getText(), "ADD TO CALENDAR");
         softAssert.assertEquals(successMessageBlock.getBookAnotherAppBut().getText(), "BOOK ANOTHER APPOINTMENT");
         softAssert.assertEquals(successMessageBlock.getDownloadFormBut().getText(), "DOWNLOAD INTAKE FORM");
-        softAssert.assertTrue(bookingDetail.containsLocation(locationsData.getLocationName()), "Location " + locationsData.getLocationName() + " not found");
+        softAssert.assertTrue(bookingDetail.containsLocation(locationsData.getShortLocationName()), "Location " + locationsData.getShortLocationName() + " not found");
         softAssert.assertTrue(bookingDetail.containsService(servicesData.getServiceName()), "Service " + servicesData.getServiceName() + " not found");
         softAssert.assertTrue(bookingDetail.containsTherapist(therapist), "Therapist " + therapist + " not found");
         softAssert.assertTrue(bookingDetail.containsDuration(servicesData.getDuration()), "Duration " + servicesData.getDuration() + " not found");

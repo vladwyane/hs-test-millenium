@@ -55,4 +55,10 @@ public class Dashboard extends BasePage {
         return new Employee(driver);
     }
 
+    public ServicesPOS moveToServices() {
+        dataNavLink.click();
+        clickSubNavItem("Services");
+        return new ServicesPOS(driver);
+    }
+
 }

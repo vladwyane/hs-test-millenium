@@ -70,7 +70,7 @@ public class CreateAccountPage extends BasePage {
         for (int i = 0; i < locationPopup.getTitlesLocationList().size(); i++) {
             if(isElementInvisible(locationPopup.getTitlesLocationList().get(i)) == true)
                 locationPopup.clickRightArrowOfCarousel();
-            if(locationPopup.getTitlesLocationList().get(i).getText().contains(locationsData.getLocationName().toUpperCase())) {
+            if(locationPopup.getTitlesLocationList().get(i).getText().contains(locationsData.getShortLocationName().toUpperCase())) {
                 locationPopup.getSelectButLocationList().get(i).click();
                 return;
             }

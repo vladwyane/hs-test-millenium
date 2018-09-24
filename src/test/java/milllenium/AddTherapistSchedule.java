@@ -1,6 +1,9 @@
 package milllenium;
+import data.LocationsData;
+import data.Therapist;
 import data.Users;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pages.millenium.Dashboard;
 import pages.millenium.LogInHome;
@@ -25,11 +28,11 @@ public class AddTherapistSchedule extends TestBase {
             scheduleEditor = new ScheduleEditor(app.getDriver());
         }
 
-        @Test()
-        public void testCreateTherapistSchedule() throws InterruptedException, ParseException {
-            logInHome.logIn(Users.MILLENIUM);
-            dashboard.moveToScheduleEditor();
-            scheduleEditor.addScheduleForDwyaneOnWeek("9/23/2018", "11:30 AM", "6:45 PM");
-        }
+        @Test(priority = 2)
+        public void testCreateTherapistScheduleOnDay() throws InterruptedException, ParseException {
+        logInHome.logIn(Users.MILLENIUM);
+        dashboard.moveToScheduleEditor();
+        scheduleEditor.addTherapistSchedule(LocationsData.CHERRY_HILL, Therapist.VLADYSLAV,"9/24/2018", "10:30 AM", "6:45 PM");
+    }
 
 }

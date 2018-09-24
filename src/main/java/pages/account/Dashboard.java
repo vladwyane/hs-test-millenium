@@ -94,7 +94,7 @@ public class Dashboard extends BasePage {
         softAssert.assertTrue(appointmentTable.getCellFromAppTable("Date", dateTime.getDate(), 2), "Date not found");
         softAssert.assertTrue(appointmentTable.getCellFromAppTable("Therapist", therapist,1), "Therapist not found");
         softAssert.assertTrue(appointmentTable.getCellFromAppTable("Procedure", servicesData.getServiceName(),0), "Procedure not found");
-        softAssert.assertTrue(appointmentTable.getCellFromAppTable("Location", locationsData.getLocationName(), 0), "Location not found");
+        softAssert.assertTrue(appointmentTable.getCellFromAppTable("Location", locationsData.getShortLocationName(), 0), "Location not found");
         softAssert.assertAll();
     }
 }
