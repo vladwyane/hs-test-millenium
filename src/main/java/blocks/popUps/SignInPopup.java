@@ -20,7 +20,6 @@ public class SignInPopup extends HtmlElement {
     @FindBy(id = "sign-in-popup-email")
     private TextInput emailField;
 
-
     public TextInput getPasswordField() {
         return passwordField;
     }

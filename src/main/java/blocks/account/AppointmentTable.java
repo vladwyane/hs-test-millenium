@@ -31,8 +31,6 @@ public class AppointmentTable extends HtmlElement {
             }
         }
         for (int i = indexColumn; i < listCellOfAppTable.size(); i += listHeadingOfAppTable.size()) {
-            String dd = listCellOfAppTable.get(i).getText();
-            String ttt = returnWordInSentence(sentence, wordNumber);
             if(listCellOfAppTable.get(i).getText().contains(returnWordInSentence(sentence, wordNumber)))
                 return true;
         }

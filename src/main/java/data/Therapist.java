@@ -7,7 +7,8 @@ public enum Therapist {
 
     ANY_EMPLOYEE ("Doctor", "Therapist", "Therapist", "Any Employee"),
     VLADYSLAV ("Vladyslav", "Chesalov", "Chesalov", "Any Male"),
-    MERRY("Merry", "Jane", "JANE", "Any Female");
+    MERRY("Merry", "Jane", "JANE", "Any Female"),
+    UNIVERSAL("Skill", "Can", "AllCan", "Any Male");
 
     public String getTherapistSpecific() {
         return therapistSpecific;

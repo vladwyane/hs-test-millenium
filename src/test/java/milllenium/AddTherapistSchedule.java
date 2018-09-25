@@ -32,7 +32,7 @@ public class AddTherapistSchedule extends TestBase {
         public void testCreateTherapistScheduleOnDay() throws InterruptedException, ParseException {
         logInHome.logIn(Users.MILLENIUM);
         dashboard.moveToScheduleEditor();
-        scheduleEditor.addTherapistSchedule(LocationsData.CHERRY_HILL, Therapist.VLADYSLAV,"9/24/2018", "10:30 AM", "6:45 PM");
+        scheduleEditor.addTherapistSchedule(LocationsData.CHERRY_HILL, Therapist.VLADYSLAV,"9/25/2018", "10:30 AM", "6:45 PM");
     }
 
 }

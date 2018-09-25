@@ -1,6 +1,7 @@
 package pages.millenium;
 
 import blocks.Header;
+import data.ServicesData;
 import data.Therapist;
 import data.Users;
 import org.openqa.selenium.WebDriver;
@@ -78,9 +79,15 @@ public class Employee extends BasePage {
     @FindBys( {@FindBy(css = ".footerrow2 a")} )
     private List<HtmlElement> listFooterPaginItem;
 
-    @Name("ArrayList of all td in the service table")
-    @FindBys( {@FindBy(css = "#Table20 td")} )
-    private List<HtmlElement> listAllTdInTheServiceTable;
+    @Name("ArrayList of all td in table after checkbox")
+    @FindBys( {@FindBy(xpath = "//input[contains(@id, 'Services')]//ancestor::td[@align and not (@class)]//following-sibling::td")} )
+    private List<HtmlElement> lisTdAfterCheckbox;
+
+    @FindBy(id = "ctl00_Main_btnPage4CopyServs")
+    private Button copyAllowedServBut;
+
+    @FindBy(id = "ctl00_Main_cntPage4Employees_cboEmployees")
+    private Select selectEmployee;
 
     public int getNumColumnFormTable(String headingColumn) {
         int indexColumn = 0;
@@ -114,7 +121,7 @@ public class Employee extends BasePage {
                 listFooterPaginItem.get(i).click();
                 i++;
             }
-        } while (i < 1);
+        } while (i < listFooterPaginItem.size());
         saveEmpBut.click();
         waitUntilElementAppeared(header);
     }
@@ -153,7 +160,48 @@ public class Employee extends BasePage {
         saveEmpBut.click();
     }
 
-    public void addingAllServiceForTherapist(String headingColumn) {
-        chooseAllService(headingColumn);
+    public void addingAllServiceForTherapist() {
+        chooseAllService("Allowed?");
+    }
+
+    public void addingService(ServicesData servicesData) {
+        chooseService(servicesData.getCodeService().toUpperCase());
+    }
+
+    private void chooseService(String serviceCode) {
+        appServiceLink.click();
+        editServBut.click();
+        int i = 0;
+        do {
+            for (int j = 0; j < lisTdAfterCheckbox.size(); j += (lisTdAfterCheckbox.size() / 10)) {
+                if(lisTdAfterCheckbox.get(j).getText().equals(serviceCode) && listServiceCheckBox.get(((j / (lisTdAfterCheckbox.size() / 10)) * (listServiceCheckBox.size() / 10))).isSelected() == false) {
+                    listServiceCheckBox.get(((j / (lisTdAfterCheckbox.size() / 10)) * (listServiceCheckBox.size() / 10))).select();
+                    saveEmpBut.click();
+                    waitUntilElementAppeared(header);
+                    return;
+                }
+            }
+            if(listFooterPaginItem.get(listFooterPaginItem.size() - 1).getText().equals("...") == false) {
+                break;
+            }
+            if(listFooterPaginItem.get(i).getText().equals("...")) {
+                listFooterPaginItem.get(i).click();
+                i = 1;
+            }
+            else {
+                listFooterPaginItem.get(i).click();
+                i++;
+            }
+        } while (i < listFooterPaginItem.size());
+    }
+
+    public void chooseServiceFromAnotherEmp(Therapist therapist) {
+        appServiceLink.click();
+        editServBut.click();
+        copyAllowedServBut.click();
+        waitUntilTextInElementAppear(header, "waiting");
+        selectEmployee.selectByVisibleText(therapist.getTherapistCode().toUpperCase() + ": " + therapist.getTherapistLastName() + ", " + therapist.getTherapistFirstName());
+        saveEmpBut.click();
+        waitUntilElementAppeared(header);
     }
 }

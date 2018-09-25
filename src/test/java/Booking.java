@@ -63,12 +63,12 @@ public class Booking extends TestBase {
         locations.chooseLocationFromLocationPage(LocationsData.DE_BEAR);
         locations.changeLocation(LocationsData.CHERRY_HILL);
         facialServicePage.clickFacialService();
-        chooseServices.chooseServiceAsGuest(ServicesData.NMFC50, false);
+        chooseServices.chooseServiceAsGuest(ServicesData.NMTFC, false);
         String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER22_12PM);
         paymentInformation.fillPaymentInformation(Users.ALLEN, CreditCards.VISA_STRIPE, true);
         signInPage.open();
         signInPage.logIn(Users.ALLEN);
-        dashboard.checkingAppointments(DateTime.SEPTEMBER22_12PM, therapistName, ServicesData.NMFC50, LocationsData.CHERRY_HILL);
+        dashboard.checkingAppointments(DateTime.SEPTEMBER22_12PM, therapistName, ServicesData.NMTFC, LocationsData.CHERRY_HILL);
     }
 
     @Test()

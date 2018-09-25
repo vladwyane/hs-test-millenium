@@ -112,7 +112,7 @@ public class Registration extends TestBase{
     @Test()
     @Severity(SeverityLevel.MINOR)
     @Story("Test of email with registration letter")
-    public void testSuccessEmailRegistration()  {
+    public void testSuccessEmailRegistration() throws InterruptedException {
         googleMail.signIntoGoogleMail(Users.VLADYSLAV);
         googleMail.checkingEmailRegistration();
     }

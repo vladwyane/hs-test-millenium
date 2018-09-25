@@ -5,7 +5,7 @@ package data;
  */
 public enum DateTime {
 
-    SEPTEMBER22_12PM("Sep 22", "12:00\nPM"),
+    SEPTEMBER22_12PM("Sep 25", "12:00\nPM"),
     SEPTEMBER30_10AM ("Sep 10", "10:00\nAM"),
     OCTOBER11_3PM ("Oct 11", "03:00\nPM"),
     NOVEMBER23_6PM ("Nov 10", "06:00\nPM");

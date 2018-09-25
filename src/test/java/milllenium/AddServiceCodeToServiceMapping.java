@@ -30,6 +30,8 @@ public class AddServiceCodeToServiceMapping extends TestBase {
     public void testQueueTherapistSchedules() {
         adminLogIn.logInToAdmin(Users.ADMIN);
         serviceMapping.open();
+        serviceMapping.searchService(ServicesData.NCHS80);
         serviceMapping.addCodeSerToNonMember(ServicesData.NCHS80);
+        serviceMapping.clickUpdateBut();
     }
 }

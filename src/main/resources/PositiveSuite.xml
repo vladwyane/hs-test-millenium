@@ -38,6 +38,13 @@
                     <include name="testSuccessEmailChangePassword"></include>
                 </methods>
             </class>
+            <class name="adminPanel.CustomersAction" >
+                <methods>
+                    <include name="testSendingResetPassword"></include>
+                    <include name="testSuccessResetPassEmail"></include>
+                    <include name="testSuccessResetNewPassword"></include>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

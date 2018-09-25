@@ -38,10 +38,13 @@ public class GoogleMail extends BasePage {
     @FindBy(id = "passwordNext")
     private HtmlElement nextPassButton;
 
+    @FindBy(xpath = "//a[contains(@href, 'reset-password')]")
+    private Link resetPasswordLink;
+
     @FindBys( {@FindBy(css = ".bog")} )
     public List<HtmlElement> listTitleLetters;
 
-    public void signIntoGoogleMail(Users users) {
+    public void signIntoGoogleMail(Users users) throws InterruptedException {
         open();
         waitUntilElementAppeared(nextIndButton);
         type(loginField, users.getEmail());
@@ -49,7 +52,14 @@ public class GoogleMail extends BasePage {
         waitUntilElementAppeared(nextPassButton);
         type(passwordField, users.getNewPassword());
         nextPassButton.click();
-        waitUntilElementAppeared(listTitleLetters.get(0));
+        Thread.sleep(5000);
+    }
+
+    public String returnResetPassLink() {
+        listTitleLetters.get(0).click();
+        waitUntilTextInElementAppear(listTitleLetters.get(0), "waiting");
+        return resetPasswordLink.getReference();
+
     }
 
     public void checkingEmailChangePass() {
@@ -70,6 +80,11 @@ public class GoogleMail extends BasePage {
     public void checkingEmailBookingWithRegistration() {
         softAssert.assertEquals(listTitleLetters.get(0).getText(), "Hand&Stone");
         softAssert.assertEquals(listTitleLetters.get(2).getText(), "Hand&Stone Booking");
+        softAssert.assertAll();
+    }
+
+    public void checkingEmailResetPassword() {
+        softAssert.assertEquals(listTitleLetters.get(0).getText(), "Password reset for Hand&Stone");
         softAssert.assertAll();
     }
 }

@@ -56,16 +56,30 @@ public class ServiceMapping extends BasePage {
         }
     }
 
-    private void searchService (String serviceName) {
-        type(serviceSearchField, serviceName + Keys.ENTER);
+    public void searchService (ServicesData servicesData) {
+        type(serviceSearchField, servicesData.getServiceName() + Keys.ENTER);
         waitUntilTextInElementAppear(listEditServBut.get(0), "waiting");
         listEditServBut.get(0).click();
     }
 
     public void addCodeSerToNonMember(ServicesData servicesData) {
-        searchService(servicesData.getServiceName());
         typeServiceCode("Non-member", servicesData.getCodeService());
         linkCodeResult.click();
+    }
+
+    public void addCodeSerToMember(ServicesData servicesData) {
+        typeServiceCode("Member", servicesData.getCodeService());
+        linkCodeResult.click();
+    }
+
+    public void addCodeSerToItroductory(ServicesData servicesData) {
+        typeServiceCode("Introductory", servicesData.getCodeService());
+        linkCodeResult.click();
+    }
+
+    public ServiceMapping clickUpdateBut() {
         updateBut.click();
+        waitUntilTextInElementAppear(listHeaderService.get(0), "waiting");
+        return new ServiceMapping(driver);
     }
 }

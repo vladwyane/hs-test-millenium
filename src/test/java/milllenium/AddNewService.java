@@ -12,7 +12,7 @@ import testBase.TestBase;
 /**
  * Created by bigdrop on 9/24/2018.
  */
-public class CreateNewService extends TestBase {
+public class AddNewService extends TestBase {
 
     private LogInHome logInHome;
     private ServicesPOS servicesPOS;
