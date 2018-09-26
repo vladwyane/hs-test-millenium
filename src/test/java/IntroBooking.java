@@ -1,16 +1,13 @@
 import data.*;
 import io.qameta.allure.*;
-import org.testng.TestListenerAdapter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
 import pages.booking.ChooseServices;
 import pages.booking.Confirmation;
 import pages.booking.PaymentInformation;
 import pages.booking.PrefferedDateTime;
-import testBase.MyTestListener;
 import testBase.TestBase;
 
 /**
@@ -57,9 +54,9 @@ public class IntroBooking extends TestBase {
         massageServicePage.clickMassageService();
         createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
         chooseServices.chooseServiceAsFirstVisitor(ServicesData.INTROHS50);
-        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER22_12PM);
+        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER26_02PM);
         paymentInformation.fillPaymentInformation(Users.ALLEN, CreditCards.VISA_STRIPE, false);
-        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.INTROHS50, therapistName, DateTime.SEPTEMBER22_12PM);
+        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.INTROHS50, therapistName, DateTime.SEPTEMBER26_02PM);
     }
 
     @Test()
@@ -70,7 +67,7 @@ public class IntroBooking extends TestBase {
         massageServicePage.clickMassageService();
         createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
         chooseServices.chooseServiceAsFirstVisitor(ServicesData.INTROHS50);
-        prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER22_12PM);
+        prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER26_02PM);
         paymentInformation.fillPaymentInformation(Users.ALLEN, CreditCards.VISA_STRIPE, false);
         confirmation.checkingErrorBooking();
     }

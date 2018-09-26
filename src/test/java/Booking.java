@@ -1,9 +1,7 @@
 import data.*;
 import io.qameta.allure.*;
-import org.testng.TestListenerAdapter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
 import pages.account.Dashboard;
@@ -64,11 +62,11 @@ public class Booking extends TestBase {
         locations.changeLocation(LocationsData.CHERRY_HILL);
         facialServicePage.clickFacialService();
         chooseServices.chooseServiceAsGuest(ServicesData.NMTFC, false);
-        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER22_12PM);
+        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER26_02PM);
         paymentInformation.fillPaymentInformation(Users.ALLEN, CreditCards.VISA_STRIPE, true);
         signInPage.open();
         signInPage.logIn(Users.ALLEN);
-        dashboard.checkingAppointments(DateTime.SEPTEMBER22_12PM, therapistName, ServicesData.NMTFC, LocationsData.CHERRY_HILL);
+        dashboard.checkingAppointments(DateTime.SEPTEMBER26_02PM, therapistName, ServicesData.NMTFC, LocationsData.CHERRY_HILL);
     }
 
     @Test()
@@ -79,9 +77,9 @@ public class Booking extends TestBase {
         massageServicePage.clickMassageService();
         createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
         chooseServices.chooseServiceAsGuest(ServicesData.NM80, true);
-        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER22_12PM);
+        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER26_02PM);
         paymentInformation.fillPaymentInformation(Users.LEBRON, CreditCards.VISA_STRIPE, false);
-        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.NM80, therapistName, DateTime.SEPTEMBER22_12PM);
+        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.NM80, therapistName, DateTime.SEPTEMBER26_02PM);
     }
 
     @Test()
@@ -93,9 +91,9 @@ public class Booking extends TestBase {
         locations.chooseLocationFromLocationPage(LocationsData.CHERRY_HILL);
         massageServicePage.clickMassageService();
         chooseServices.chooseServiceAsMember(ServicesData.NM50, Users.MEMBER, false);
-        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER22_12PM);
+        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER26_02PM);
         paymentInformation.fillPaymentInformationForMember();
-        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.NM50, therapistName, DateTime.SEPTEMBER22_12PM);
+        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.NM50, therapistName, DateTime.SEPTEMBER26_02PM);
     }
 
     @Test()
@@ -106,7 +104,7 @@ public class Booking extends TestBase {
         facialServicePage.clickFacialService();
         createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
         chooseServices.chooseServiceAsGuest(ServicesData.NMTFC, true);
-        prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER22_12PM);
+        prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER26_02PM);
         paymentInformation.fillPaymentInformation(Users.DWYANE, CreditCards.TEST_CARD, false);
         confirmation.checkingErrorBooking();
     }

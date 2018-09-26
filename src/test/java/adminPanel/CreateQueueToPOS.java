@@ -37,7 +37,6 @@ public class CreateQueueToPOS extends TestBase {
         millenniumPOS.makeQueueToPOS("therapist-schedules");
     }
 
-    @Ignore
     @Test(priority = 5)
     public void testQueueEmpAndTherapistServices() {
         adminLogIn.logInToAdmin(Users.ADMIN);
@@ -46,7 +45,6 @@ public class CreateQueueToPOS extends TestBase {
         millenniumPOS.makeQueueToPOS("therapist-service");
     }
 
-    @Ignore
     @Test(priority = 5)
     public void testQueueServices() {
         adminLogIn.logInToAdmin(Users.ADMIN);
@@ -56,7 +54,7 @@ public class CreateQueueToPOS extends TestBase {
 
     @Ignore
     @Test(priority = 5)
-    public void testQueueSResetMapping() {
+    public void testQueueResetMapping() {
         adminLogIn.logInToAdmin(Users.ADMIN);
         millenniumPOS.open();
         millenniumPOS.makeQueueToPOS("reset-mapping");

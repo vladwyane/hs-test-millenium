@@ -45,7 +45,7 @@ public class AddNewTherapist extends TestBase {
         employee.addingAllServiceForTherapist();
     }
 
-    @Ignore
+    //@Ignore
     @Test(priority = 2)
     public void testCreateTherapistWithSameServices() {
         logInHome.logIn(Users.MILLENIUM);

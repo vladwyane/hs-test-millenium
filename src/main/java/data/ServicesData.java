@@ -6,7 +6,7 @@ package data;
 public enum ServicesData {
 
     NMFC50 ("Men's Facial Clarity", "1 hour", "FACIALS - CLARITY:NONMEMBER", "NMFC50", "Facial", "120"),
-    MFC ("Men's Facial Clarity", "15 min", "FACIALS - CLARITY:NONMEMBER", "MFC", "Facial", "35"),
+    MFC ("Men's Facial Clarity", "15 min", "FACIALS - CLARITY:MEMBER", "MFC", "Facial", "35"),
     NM25 ("Massage", "30 min", "MASSAGE:NONMEMBER", "NM25", "Massage", "44"),
     NM50 ("Massage", "1 hour", "MASSAGE:NONMEMBER", "NM50", "Massage", "63"),
     NM80 ("Massage", "1 hour 30 min", "MASSAGE:NONMEMBER", "NM80", "Massage", "86"),
