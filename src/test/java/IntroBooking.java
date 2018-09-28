@@ -10,6 +10,8 @@ import pages.booking.PaymentInformation;
 import pages.booking.PrefferedDateTime;
 import testBase.TestBase;
 
+import java.io.IOException;
+
 /**
  * Created by bigdrop on 9/18/2018.
  */
@@ -49,14 +51,14 @@ public class IntroBooking extends TestBase {
     @Test()
     @Severity(SeverityLevel.NORMAL)
     @Story("Positive test of booking first time visitor")
-    public void testBookingAsFistTimeVisitor() throws InterruptedException {
+    public void testBookingAsFistTimeVisitor() throws InterruptedException, IOException {
         home.open();
         massageServicePage.clickMassageService();
         createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
         chooseServices.chooseServiceAsFirstVisitor(ServicesData.INTROHS50);
-        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER26_02PM);
+        String therapistName = prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER28_03PM);
         paymentInformation.fillPaymentInformation(Users.ALLEN, CreditCards.VISA_STRIPE, false);
-        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.INTROHS50, therapistName, DateTime.SEPTEMBER26_02PM);
+        confirmation.checkingSuccessBooking(LocationsData.CHERRY_HILL, ServicesData.INTROHS50, therapistName, DateTime.SEPTEMBER28_03PM);
     }
 
     @Test()
@@ -67,7 +69,7 @@ public class IntroBooking extends TestBase {
         massageServicePage.clickMassageService();
         createAccountPage.chooseLocation(LocationsData.CHERRY_HILL);
         chooseServices.chooseServiceAsFirstVisitor(ServicesData.INTROHS50);
-        prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER26_02PM);
+        prefferedDateTime.chooseTherapistAndDateTime(Therapist.ANY_EMPLOYEE, DateTime.SEPTEMBER28_03PM);
         paymentInformation.fillPaymentInformation(Users.ALLEN, CreditCards.VISA_STRIPE, false);
         confirmation.checkingErrorBooking();
     }

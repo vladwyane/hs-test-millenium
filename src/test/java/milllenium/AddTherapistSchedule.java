@@ -39,14 +39,14 @@ public class AddTherapistSchedule extends TestBase {
     public void testCreateTherapistScheduleOnDaySkill() throws InterruptedException, ParseException {
         logInHome.logIn(Users.MILLENIUM);
         dashboard.moveToScheduleEditor();
-        scheduleEditor.addTherapistSchedule(LocationsData.CHERRY_HILL, Therapist.UNIVERSAL, "9/26/2018", "9:30 AM", "6:45 PM");
+        scheduleEditor.addTherapistSchedule(LocationsData.CHERRY_HILL, Therapist.UNIVERSAL, "9/28/2018", "9:30 AM", "6:45 PM");
     }
 
     @Test(priority = 3)
     public void testCreateTherapistScheduleOnDayVlad() throws InterruptedException, ParseException {
         logInHome.logIn(Users.MILLENIUM);
         dashboard.moveToScheduleEditor();
-        scheduleEditor.addTherapistSchedule(LocationsData.CHERRY_HILL, Therapist.VLADYSLAV, "9/26/2018", "11:30 AM", "5:30 PM");
+        scheduleEditor.addTherapistSchedule(LocationsData.CHERRY_HILL, Therapist.VLADYSLAV, "9/28/2018", "11:30 AM", "5:30 PM");
     }
 
 

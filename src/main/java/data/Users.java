@@ -22,8 +22,11 @@ public enum Users {
             "322 NY 32th Street", "Miami", "Florida", "33101"),
     ADMIN("Name", "Surname", "superAdmin@hs.com", "JR6GMs4ywnew", "A1234567", "A1234567", "3325546657",
             "322 NY 32th Street", "Miami", "Florida", "33101"),
+    VLADYSLAV_PROD("Vladyslav", "Chesalov", "vladyslav.chesalov+6@bigdropinc.com", "JR6GMs4ywGnew", "JR6GMs4ywG", "JR6GMs4ywG", "1213354566",
+            "3275 NW 24th Street Rd", "Miami", "Florida", "33101"),
     INVALID("Invalid", "Test", "vladyslav.chesalov+8@bigdropinc.com", "JR6GMs4ywG", "JR6GMs4yw", "JR6GMs4ywGnew", "9087654321",
             "3275 NW 24th Street Rd", "Miami", "Florida", "33101");
+
 
     private String firstName;
     private String lastName;

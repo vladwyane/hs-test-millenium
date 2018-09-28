@@ -44,7 +44,13 @@ public class GoogleMail extends BasePage {
     @FindBys( {@FindBy(css = ".bog")} )
     public List<HtmlElement> listTitleLetters;
 
-    public void signIntoGoogleMail(Users users) throws InterruptedException {
+    @FindBy(xpath = "//a[contains(@aria-label, 'Google Account')]")
+    private HtmlElement accountAva;
+
+    @FindBy(xpath = "//a[contains(text(), 'Sign out')]")
+    private HtmlElement signOutBut;
+
+    public String signIntoGoogleMail(Users users) throws InterruptedException {
         open();
         waitUntilElementAppeared(nextIndButton);
         type(loginField, users.getEmail());
@@ -53,6 +59,9 @@ public class GoogleMail extends BasePage {
         type(passwordField, users.getNewPassword());
         nextPassButton.click();
         Thread.sleep(5000);
+        String titleLetter = listTitleLetters.get(0).getText();
+
+        return titleLetter;
     }
 
     public String returnResetPassLink() {
@@ -86,5 +95,13 @@ public class GoogleMail extends BasePage {
     public void checkingEmailResetPassword() {
         softAssert.assertEquals(listTitleLetters.get(0).getText(), "Password reset for Hand&Stone");
         softAssert.assertAll();
+    }
+
+    public void accountLogout() {
+        if (isElementPresent(accountAva) == true) {
+            accountAva.click();
+            waitUntilElementWillBeClickable(signOutBut);
+            signOutBut.click();
+        }
     }
 }

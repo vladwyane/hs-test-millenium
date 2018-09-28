@@ -2,6 +2,7 @@ package pages;
 
 import blocks.CreateAccountForm;
 import blocks.Header;
+import blocks.popUps.FirstVisitPopup;
 import blocks.popUps.LocationPopup;
 import data.*;
 import org.openqa.selenium.WebDriver;
@@ -22,10 +23,13 @@ public class CreateAccountPage extends BasePage {
     private CreateAccountForm createAccountForm;
     private Header header;
     private LocationPopup locationPopup;
+    private FirstVisitPopup firstVisitPopup;
 
     @Override
     public void open() {
         driver.get(ConfigProperties.getProperty("signUp.url"));
+        if (waitUntilElementAppeared(firstVisitPopup) == true)
+            firstVisitPopup.clickCloseBut();
     }
 
     @FindBy(id = "modal-header-id")

@@ -6,7 +6,10 @@ package data;
 public enum LocationsData {
 
     CHERRY_HILL ("Cherry", "NJ Cherry Hill - Hand and Stone"),
-    DE_BEAR("Bear", "DE Bear - Hand and Stone");
+    DE_BEAR("Bear", "DE Bear - Hand and Stone"),
+    PEORIA_AZ("Peoria", "AZ Peoria - Hand and Stone"),
+    NAPERVILLE_IL("Naperville", "IL Naperville - Hand and Stone"),
+    EDGEWATER_NJ("Edgewater", "NJ Edgewater - Hand and Stone");
 
     public String getShortLocationName() {
         return shortLocationName;

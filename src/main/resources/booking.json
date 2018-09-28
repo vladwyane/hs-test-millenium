@@ -1,0 +1,24 @@
+[
+  {
+    "location": "Cherry Hill, NJ",
+    "service": "Massage",
+    "therapist": "Vladyslav C.",
+    "date": "Friday, Sep 28, 2018 4:30PM",
+    "duration": "Duration: 1 hour",
+    "subTotal": "$49.95",
+    "tax": "$3.50",
+    "total": "$53.45",
+    "currentDate": "Fri Sep 28 17:00:56 EEST 2018"
+  },
+  {
+    "currentDate": "Fri Sep 28 17:05:38 EEST 2018",
+    "location": "Cherry Hill, NJ",
+    "service": "Massage",
+    "therapist": "Dwyane W.",
+    "date": "Friday, Sep 28, 2018 5:30PM",
+    "duration": "Duration: 1 hour",
+    "subTotal": "$49.95",
+    "tax": "$3.50",
+    "total": "$53.45"
+  }
+]

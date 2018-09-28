@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 
+import java.io.IOException;
+
 /**
  * Created by bigdrop on 9/14/2018.
  */
@@ -33,12 +35,12 @@ public class Confirmation extends BasePage {
 
     }
 
-    public void checkingSuccessBooking(LocationsData locationsData, ServicesData servicesData, String therapist, DateTime dateTime) {
+    public void checkingSuccessBooking(LocationsData locationsData, ServicesData servicesData, String therapist, DateTime dateTime) throws IOException {
         waitUntilElementAppeared(successMessageBlock);
+        bookingDetail.generateBookingFile();
         softAssert.assertEquals(successMessageBlock.getSuccessHeading().getText(), "CONGRATULATIONS!");
         softAssert.assertEquals(successMessageBlock.getAddToCalendarBut().getText(), "ADD TO CALENDAR");
         softAssert.assertEquals(successMessageBlock.getBookAnotherAppBut().getText(), "BOOK ANOTHER APPOINTMENT");
-        softAssert.assertEquals(successMessageBlock.getDownloadFormBut().getText(), "DOWNLOAD INTAKE FORM");
         softAssert.assertTrue(bookingDetail.containsLocation(locationsData.getShortLocationName()), "Location " + locationsData.getShortLocationName() + " not found");
         softAssert.assertTrue(bookingDetail.containsService(servicesData.getServiceName()), "Service " + servicesData.getServiceName() + " not found");
         softAssert.assertTrue(bookingDetail.containsTherapist(therapist), "Therapist " + therapist + " not found");

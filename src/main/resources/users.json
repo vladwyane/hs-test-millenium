@@ -25,5 +25,23 @@
     "confPassword": "JR6GMs4ywG",
     "phone": "2123456789",
     "location": "Cherry"
+  },
+  {
+    "firstName": "Lebron 3",
+    "lastName": "James 4",
+    "email": "vladyslav.chesalov+11@bigdropinc.com",
+    "password": "JR6GMs4ywG",
+    "confPassword": "JR6GMs4ywG",
+    "phone": "3123456789",
+    "location": "Cherry"
+  },
+  {
+    "firstName": "Lebron 4",
+    "lastName": "James 5",
+    "email": "vladyslav.chesalov+12@bigdropinc.com",
+    "password": "JR6GMs4ywG",
+    "confPassword": "JR6GMs4ywG",
+    "phone": "4123456789",
+    "location": "Cherry"
   }
 ]

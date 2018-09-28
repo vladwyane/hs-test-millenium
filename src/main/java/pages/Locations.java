@@ -2,6 +2,7 @@ package pages;
 
 import blocks.Header;
 import blocks.LocationsNav;
+import blocks.popUps.FirstVisitPopup;
 import blocks.popUps.LocationPopup;
 import data.LocationsData;
 import org.openqa.selenium.WebDriver;
@@ -25,10 +26,13 @@ public class Locations extends BasePage{
     private LocationsNav locationsNav;
     private Header header;
     private LocationPopup locationPopup;
+    private FirstVisitPopup firstVisitPopup;
 
     @Override
     public void open() {
         driver.get(ConfigProperties.getProperty("locations.url"));
+        if (waitUntilElementAppeared(firstVisitPopup) == true)
+            firstVisitPopup.clickCloseBut();
     }
 
     @Name("ArrayList of buttons more details locations")

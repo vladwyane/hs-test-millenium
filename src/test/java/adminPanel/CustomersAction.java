@@ -39,6 +39,7 @@ public class CustomersAction extends TestBase {
 
     @AfterMethod
     public void clearAllCookies() {
+        googleMail.accountLogout();
         app.delleteAllCookies();
     }
 

@@ -1,6 +1,7 @@
 package pages;
 
 import blocks.LastDeals;
+import blocks.popUps.FirstVisitPopup;
 import blocks.popUps.ResetPasswordPopup;
 import data.Users;
 import org.openqa.selenium.WebDriver;
@@ -21,10 +22,34 @@ public class Home extends BasePage{
 
     LastDeals lastDeals;
     ResetPasswordPopup resetPasswordPopup;
+    FirstVisitPopup firstVisitPopup;
 
     @Override
     public void open() {
         driver.get(ConfigProperties.getProperty("home.url"));
+        if (waitUntilElementAppeared(firstVisitPopup) == true) firstVisitPopup.clickCloseBut();
+    }
+
+    public String openStage() {
+        driver.get(ConfigProperties.getProperty("homeStage.url"));
+        String labelPopup;
+        if (waitUntilElementAppeared(firstVisitPopup) == true) {
+            labelPopup = firstVisitPopup.getPopupLabel().getText();
+            firstVisitPopup.clickCloseBut();
+            return labelPopup;
+        }
+        else return null;
+    }
+
+    public String openProd() {
+        driver.get(ConfigProperties.getProperty("homeProd.url"));
+        String labelPopup;
+        if (waitUntilElementAppeared(firstVisitPopup) == true) {
+            labelPopup = firstVisitPopup.getPopupLabel().getText();
+            firstVisitPopup.clickCloseBut();
+            return labelPopup;
+        }
+        else return null;
     }
 
     @FindBy(id = "modal-header-id")
@@ -60,6 +85,11 @@ public class Home extends BasePage{
         } else {
             softAssert.assertTrue(isElementPresent(titleInfoPopup), "Element is not found");
         }
+        softAssert.assertAll();
+    }
+
+    public void checkingFirstVisitPopup(String labelPopup) {
+        softAssert.assertEquals(labelPopup, "If you are experiencing any issues with the website - please clear your browser cache.");
         softAssert.assertAll();
     }
 }

@@ -2,6 +2,7 @@ package pages;
 
 import blocks.Header;
 import blocks.SignInForm;
+import blocks.popUps.FirstVisitPopup;
 import blocks.popUps.SignInPopup;
 import data.Users;
 import org.openqa.selenium.WebDriver;
@@ -22,10 +23,13 @@ public class SignInPage extends BasePage {
     private SignInForm signInForm;
     private SignInPopup signInPopup;
     private Header header;
+    private FirstVisitPopup firstVisitPopup;
 
     @Override
     public void open() {
         driver.get(ConfigProperties.getProperty("signIn.url"));
+        if (waitUntilElementAppeared(firstVisitPopup) == true)
+            firstVisitPopup.clickCloseBut();
     }
 
     public CreateAccountPage openCreateAccPageFromSignIn() {

@@ -13,7 +13,7 @@ import java.util.List;
  * Created by bigdrop on 9/13/2018.
  */
 
-@Block(@FindBy(xpath = "(//section[@class='appointment-date ember-view']/following-sibling::div)[1]"))
+@Block(@FindBy(xpath = "(//section[@class='appointment-date ember-view']//following-sibling::div)[1]"))
 public class TherapistSchedule extends HtmlElement {
 
     public List<HtmlElement> getListTimeTherapist() {

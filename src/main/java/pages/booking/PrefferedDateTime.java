@@ -74,7 +74,7 @@ public class PrefferedDateTime extends BasePage {
             }
         }
         for (int i = 0; i < listTime.size(); i++) {
-            if(isElementContainsAttributeValue(listTime.get(i), "class", "disabled") == false) {
+            if(isElementContainsAttributeValue(listTime.get(i), "class", "disabled") == false && isElementInvisible(listTime.get(i)) == false) {
                 listTime.get(i).click();
                 return therapistSchedule.getTherapistNameActive().getText();
             }
