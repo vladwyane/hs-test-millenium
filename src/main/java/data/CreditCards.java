@@ -7,12 +7,8 @@ public enum CreditCards {
 
     VISA_STRIPE("Stripe VISA", "4242424242424242", "October", "2020", "123"),
     TEST_CARD("Test Master", "5534727490123983", "May", "2022", "128"),
-    REAL_CARD("Visa", "5489221110296465", "November", "2020", "438"),
     MASTERCART_STRIPE("Stripe Master", "5555555555554444", "April", "2021", "989");
-
-
-
-
+    
     private String cardName;
     private String cardNumber;
     private String cardMonth;
